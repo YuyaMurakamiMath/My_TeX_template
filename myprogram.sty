@@ -1,0 +1,91 @@
+%listingsパッケージ（日本語を含む場合にはjlistingも併用）によるソースコードの表示
+\usepackage{listings,plistings}
+
+\renewcommand{\lstlistingname}{プログラム}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Python環境の定義
+\lstnewenvironment{Python}
+{\lstset{
+%プログラム言語(複数の言語に対応，C,C++も可)
+language = Python,
+%背景色と透過度
+backgroundcolor=\color{backcolour},%{\color[glay]{.90}},
+%枠外に行った時の自動改行
+breaklines = true,
+%自動改行後のインデント量(デフォルトでは20[pt])	
+breakindent = 10pt,
+%標準の書体
+basicstyle={\small},%タイプライター体なら\ttfamily\scriptsize,
+%
+columns=[l]{fullflexible},
+%キャプションの場所("tb"ならば上下両方に記載)
+captionpos = t,
+%コメントの書体
+commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}},%{\small\itshape},
+%関数名等の色の設定
+classoffset = 0,
+%キーワード(int, ifなど)の書体
+keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},%{\small\bfseries},
+%表示する文字の書体
+stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+%枠 "t"は上に線を記載, "T"は上に二重線を記載
+%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+frame = {l}, %TBlr,
+%frameまでの間隔(行番号とプログラムの間)
+framesep = 0.5\zw,
+%
+identifierstyle = {\small},
+%
+%lineskip=-0.5ex
+%タブの大きさ
+%tabsize = 4,
+%左マージン
+xleftmargin=3\zw,
+%右マージン
+xrightmargin=2\zw,
+}}
+{}
+
+%result環境の定義
+\lstnewenvironment{result}
+{\lstset{
+%プログラム言語(複数の言語に対応，C,C++も可)
+language = Python,
+%背景色と透過度
+backgroundcolor=\color{blue!5},
+%枠外に行った時の自動改行
+breaklines = true,
+%自動改行後のインデント量(デフォルトでは20[pt])	
+breakindent = 10pt,
+%標準の書体
+basicstyle={\small},%タイプライター体なら\ttfamily\scriptsize,
+%
+columns=[l]{fullflexible},
+%キャプションの場所("tb"ならば上下両方に記載)
+captionpos = t
+%コメントの書体
+commentstyle ={\small\itshape},% {\itshape \color[cmyk]{1,0.4,1,0}},
+%関数名等の色の設定
+classoffset = 0,
+%キーワード(int, ifなど)の書体
+keywordstyle ={\small\bfseries},%{\bfseries \color[cmyk]{0,1,0,0}},
+%表示する文字の書体
+stringstyle = {\ttfamily \color[rgb]{0,0,1}},
+%枠 "t"は上に線を記載, "T"は上に二重線を記載
+%他オプション：leftline，topline，bottomline，lines，single，shadowbox
+frame = {l}, %TBlr,
+%frameまでの間隔(行番号とプログラムの間)
+framesep = 0.5\zw,
+%
+identifierstyle = {\small},
+%
+%lineskip=-0.5ex
+%タブの大きさ
+%tabsize = 4,
+%左マージン
+xleftmargin=3\zw,
+%右マージン
+xrightmargin=2\zw,
+}}
+{}

@@ -1,0 +1,33 @@
+\usepackage{amsmath, amsthm, amssymb, mathtools, mathrsfs}
+
+\usepackage{enumerate} % 箇条書き
+\usepackage{bxpapersize} % 出力用紙サイズを設定
+\usepackage{graphicx,color} % dvipdfmxを利用するときは\documentclass[dvipdfmx]{jsarticle}のように\documentclassのオプションにdvipdfmxを付けないとgraphicxパッケージの挙動がおかしくなる
+\usepackage{xcolor} % 色コマンドを増やす. cyan, orange, violetあたりを使うと良さそう
+\usepackage[nobreak]{cite} % \cite{}による引用の行頭への出力を禁止する
+
+\usepackage{extarrows} % \xlongrightarrowとかの凝った矢印
+\usepackage{ulem} % \sout{}で取り消し線を引く
+
+\usepackage{tikz-cd} % 可換図式
+\usepackage{array, booktabs} % 表
+\usepackage{colortbl} % 表の色付け
+\usepackage{tabularx} % 表のセル内改行
+\usepackage{float} % 図表の位置を設定
+\usepackage{subcaption} % 複数の図を並べる
+
+\mathtoolsset{showonlyrefs,showmanualtags} % 参照した数式だけに数式番号を付ける. 参照は\refではだめで\eqrefを使う必要がある.
+
+\numberwithin{equation}{section} % 式番号を「(1.1)」のように出力
+
+% --------------------------------------------------------------------------
+%		箇条書きの番号の設定
+% --------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\theenumi}{{\upshape (\@roman\c@enumi)}}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\p@enumii}{}
+\renewcommand{\theenumii}{{\upshape (\@alph\c@enumii)}}
+\renewcommand{\labelenumii}{\theenumii}
+\makeatother

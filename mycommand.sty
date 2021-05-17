@@ -1,0 +1,141 @@
+% --------------------------------------------------------------------------
+%	ギリシャ文字の短縮コマンド
+% --------------------------------------------------------------------------
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+
+% --------------------------------------------------------------------------
+%	書体
+% --------------------------------------------------------------------------
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbW}{\mathbb{W}}
+
+\newcommand{\frake}{\mathfrak{e}}
+\newcommand{\frakp}{\mathfrak{p}}
+\newcommand{\frakq}{\mathfrak{q}}
+\newcommand{\frakH}{\mathfrak{H}}
+\newcommand{\frakO}{\mathfrak{O}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakQ}{\mathfrak{Q}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+% --------------------------------------------------------------------------
+%	指示関数
+% --------------------------------------------------------------------------
+
+\usepackage{bm}%小文字の太文字斜体
+\usepackage{bbm}%数字を白抜き文字にする
+
+\newcommand{\bbone}{\mathbbm{1}}
+
+% --------------------------------------------------------------------------
+%	複素数
+% --------------------------------------------------------------------------
+
+\newcommand{\iu}{\sqrt{-1}}%imaginary unitの頭文字
+
+\DeclareMathOperator{\ReNew}{Re}
+\renewcommand{\Re}{\ReNew} % 複素数の実部のコマンドをブロック体で再定義
+\DeclareMathOperator{\ImNew}{Im}
+\renewcommand{\Im}{\ImNew} % 複素数の虚部のコマンドをブロック体で再定義
+
+% --------------------------------------------------------------------------
+%	行列
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Mat}{M}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Mp}{Mp}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Gr}{Gr}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\tr}{tr}
+
+% --------------------------------------------------------------------------
+%	集合・代数・複素解析など
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Map}{Map}
+
+\DeclareMathOperator{\Frac}{Frac} % 商体
+
+\DeclareMathOperator{\Res}{Res} % 留数
+
+\DeclareMathOperator{\vol}{vol} % 体積
+
+% --------------------------------------------------------------------------
+%	代数幾何
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Supp}{Supp}
+
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\divisor}{div} % \divは÷
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\Pic}{Pic}
+
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\ord}{ord}
+
+% --------------------------------------------------------------------------
+%	自分用コマンド
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\val}{val}
+
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Per}{Per}
+\DeclareMathOperator{\Lyn}{Lyn}
+\DeclareMathOperator{\circprod}{circ}
+
+% --------------------------------------------------------------------------
+%	括弧類
+% --------------------------------------------------------------------------
+
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}} % 丸括弧行列
+\newcommand{\smat}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix}\bigr)} % 小さい丸括弧行列
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} % 鍵括弧行列
+\newcommand{\vmat}[1]{\begin{vmatrix}#1\end{vmatrix}} % 行列式
+\newcommand{\sprod}[1]{\left\langle#1\right\rangle} % 内積
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert} % 絶対値
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % ノルム
+\newcommand{\restrict}[2]{\left. #1 \right|_{#2}} % \restrict{f}{U}でfのUへの制限. \restrict{f}{k}[\gamma]とすればfへの\gammaの重さk作用
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}% \relmiddle{|}で括弧に合わせて大きくなる\mid
+
+% --------------------------------------------------------------------------
