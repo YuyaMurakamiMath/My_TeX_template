@@ -7,8 +7,6 @@
 
 の3つのテンプレートを置いています。
 
-[私のGitHubレポジトリ](https://github.com/YuyaMurakamiMath/My_TeX_template)にはテンプレートのtexファイルと、そこで使用している自作styファイルを置いています。
-
 ここを訪れた方のTeXでの執筆の参考になれば幸いです。
 
 自作styファイルで読み込んでいる一部のパッケージ（bbm, bbold, listings, plistings）は、 TeXをインストールする際にデフォルトでインストールされていない可能性があるので、 その場合は別途インストールしてください。
