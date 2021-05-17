@@ -1,37 +1,19 @@
-## Welcome to GitHub Pages
+## 村上友哉のTeXテンプレート置き場
 
-You can use the [editor on GitHub](https://github.com/YuyaMurakamiMath/My_TeX_template/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+ここは、私村上が私的に作成したTeXのテンプレートの保管庫です。
+* [記事テンプレート](https://YuyaMurakamiMath.github.io/pdfs/My_TeX_template/%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [カラフルな記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%AB%E3%83%A9%E3%83%95%E3%83%AB%E3%81%AA%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [論文テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E8%AB%96%E6%96%87%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+の3つのテンプレートを置いています。
 
-### Markdown
+[私のGitHubレポジトリ](https://github.com/YuyaMurakamiMath/My_TeX_template)にはテンプレートのtexファイルと、そこで使用している自作styファイルを置いています。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+ここを訪れた方のTeXでの執筆の参考になれば幸いです。
 
-```markdown
-Syntax highlighted code block
+自作styファイルで読み込んでいる一部のパッケージ（bbm, bbold, listings, plistings）は、 TeXをインストールする際にデフォルトでインストールされていない可能性があるので、 その場合は別途インストールしてください。
 
-# Header 1
-## Header 2
-### Header 3
+ただし、筆者はTeXをきちんと理解していないので誤りが含まれる可能性が多々ありますのでご注意ください
+（誤りを見つけた際にはお手数ですがご指摘頂けると大変ありがたく思います）。
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/YuyaMurakamiMath/My_TeX_template/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+また筆者は数学畑（特に整数論）の院生です。 異なる分野の慣習に起因する作法の違いもあると思いますのでご注意ください。
