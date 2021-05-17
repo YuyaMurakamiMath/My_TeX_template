@@ -1,0 +1,46 @@
+\documentclass[11pt,a4paper,oneside,lualatex]{article}
+
+\usepackage[marginparwidth=0pt,margin=25truemm]{geometry} % margin
+
+% --------------------------------------------------------------------------
+%		Packages and commands
+% --------------------------------------------------------------------------
+
+\usepackage{mypackage} % My packages.
+\usepackage{mycommand} % My commands.
+\usepackage{mytheoremeng} % My theorem environments (English). 
+
+% --------------------------------------------------------------------------
+%		Hyperlinks
+% --------------------------------------------------------------------------
+
+\usepackage[luatex, pdfencoding=auto]{hyperref}
+\hypersetup{
+	colorlinks=false,
+%	linkcolor=orange,
+%	citecolor=cyan,
+%	urlcolor=violet,
+}
+	
+% --------------------------------------------------------------------------
+\begin{document}
+% --------------------------------------------------------------------------
+
+\title{My template for works}
+\author{Yuya Murakami
+\thanks{Mathematical Inst. Tohoku Univ., 6-3, Aoba, Aramaki, Aoba-Ku, Sendai 980-8578, JAPAN.
+	\textit{E-mail address}: \texttt{yuya.murakami.s8@dc.tohoku.ac.jp}}}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+% --------------------------------------------------------------------------
+
+%\bibliographystyle{alpha}
+%\bibliography{myrefs}
+
+% --------------------------------------------------------------------------
+\end{document}
+% --------------------------------------------------------------------------

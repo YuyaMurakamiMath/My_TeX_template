@@ -1,0 +1,209 @@
+\documentclass[11pt,a4paper,oneside,lualatex]{ltjsarticle} % LuaLaTeXの場合
+%\documentclass[11pt,a4paper,oneside]{jsarticle} % LaTeX + dvipdfmxの場合
+%\documentclass[11pt,a4paper,oneside,titlepage,lualatex]{ltjsreport} % 表紙付き, 章から始まる形式
+
+%SumatraPDFの逆順検索でエラーが出た時は以下のコマンドラインをSumatraPDFの設定→オプションで入力する
+%"C:\Program Files (x86)\TeXstudio\texstudio.exe" "%f" -line %l
+
+\usepackage{luatexja} % ltjclasses, ltjsclasses を使うときはこの行不要
+\usepackage[marginparwidth=0pt,margin=25truemm]{geometry} % 余白の設定
+
+% --------------------------------------------------------------------------
+%		パッケージとコマンド
+% --------------------------------------------------------------------------
+
+\usepackage{mypackage} % よく使うパッケージ. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmypackage.styを読み込む
+\usepackage{mycommand} % 自分で定義したコマンド. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmycommand.styを読み込む
+
+%定理環境の設定. どちらか一方のみを使う
+%\usepackage{mytheorem} % 通常の定理環境. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmytheorem.styを読み込む
+\usepackage{mytheoremcolor} % カラフルな定理環境. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmytheoremcolor.styを読み込む
+
+\usepackage{myprogram} % ハイライト付きソースコード. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmyprogram.styを読み込む
+
+% --------------------------------------------------------------------------
+%		ハイパーリンク
+% --------------------------------------------------------------------------
+%目次にもハイパーリンクが付く. プリアンブルのできるだけ後ろに書く. 
+\usepackage[luatex, pdfencoding=auto]{hyperref}
+%\usepackage{pxjahyper}%hyperref読み込みの直後に. LaTeX + dvipdfmxの場合に日本語の文字化けを防ぐために使う
+\hypersetup{% hyperrefオプションリスト
+	colorlinks=true,
+	linkcolor=orange,
+	citecolor=cyan,
+	urlcolor=violet,
+}
+
+% --------------------------------------------------------------------------
+\begin{document}
+% --------------------------------------------------------------------------
+
+\title{カラフルな記事テンプレート}
+\author{村上友哉}
+\date{\today}
+
+\maketitle
+
+%シンプルな目次
+%\tableofcontents
+
+% カラフルな目次
+\begin{tcolorbox}[
+	breakable,%%%ページマタギOK
+	enhanced jigsaw,%%%tikzを用いた記法の処理
+	title={目次},
+	fonttitle=\bfseries\Large,
+	colback=yellow!2!white,%%%本文の背景色
+	colframe=red!50!black,%%%本文の枠の色
+	before=\par\bigskip\noindent,
+%	interior style={fill overzoom image=goldshade.png,fill image opacity=0.25},
+	colbacktitle=red!50!black,%%%タイトルの背景の色
+	enlargepage flexible=\baselineskip,pad at break*=3mm,
+%	watermark color=yellow!75!red!25!white,
+%	watermark text={\bfseries\Large Contents},
+	attach boxed title to top center={yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+	boxed title style={enhanced,boxrule=0.5mm,
+		frame code={ \path[tcb fill frame] ([xshift=-4mm]frame.west) -- (frame.north west)
+			-- (frame.north east) -- ([xshift=4mm]frame.east)
+			-- (frame.south east) -- (frame.south west) -- cycle; },
+%		interior code={ \path[tcb fill interior] ([xshift=-2mm]interior.west)
+%			-- (interior.north west) -- (interior.north east)
+%			-- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+%			-- cycle;}
+		  },
+%	drop fuzzy shadow
+	]
+	\makeatletter
+	\@starttoc{toc}
+	\makeatother
+\end{tcolorbox}
+
+% --------------------------------------------------------------------------
+
+\section{独自定義のコマンド} \label{sec:command}
+
+% --------------------------------------------------------------------------
+
+$ \N, \frakp, \calA, \Hom(A, B), \abs{x} $などのコマンドを楽に入力できる.
+定義したコマンド一覧は\mbox{mycommand.sty}で見られる.
+
+% --------------------------------------------------------------------------
+
+\section{独自定義の環境} \label{sec:environment}
+
+% --------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------
+
+\subsection{定理環境} \label{subsec:thm}
+
+% --------------------------------------------------------------------------
+
+%通常の定理環境はthm環境を使って
+%\begin{thm}[見出し] \label{thm:label_name}
+%	定理の内容
+%\end{thm}
+%として「定理 \ref{thm:label_name}」で引用する.
+
+カラフルな定理環境はthm環境を使って
+\begin{thm}{見出し}{label_name}
+	定理の内容
+\end{thm}
+として\thref{label_name}で引用する.
+他にもprop環境で命題, cor環境で系, conj環境で予想, que環境で疑問, dfn環境で定義, nota環境で記号, lem環境で補題, rem環境で注意, clm環境で主張, ex環境で例, obs環境で観察, exc環境で演習問題を出力できる.
+
+% --------------------------------------------------------------------------
+
+\subsection{プログラムのソースコードを表示} \label{subsec:program}
+
+% --------------------------------------------------------------------------
+
+\begin{Python}
+Copy and paste source code of Python or Sage.
+\end{Python}
+\begin{result}
+Copy and paste result.
+\end{result}
+のように使う.
+
+% --------------------------------------------------------------------------
+
+\section{図} \label{sec:diag}
+
+% --------------------------------------------------------------------------
+
+可換図式はTikzを使って
+\[
+\begin{tikzcd}
+	A \ar[r, "f"] \arrow[d, "g"'] & B \ar[d] \\
+	C \ar[r] & D
+\end{tikzcd}
+\]
+\[
+\begin{tikzcd}
+	& x \arrow[ld] \arrow[d, dotted] \arrow[rd] & \\
+	a & a\times b \arrow[l] \arrow[r] & b
+\end{tikzcd}
+\]
+\[
+\begin{tikzcd}
+	x \arrow[ddr, bend right] \arrow[rrd, bend left] \arrow[rd, dotted] & & \\
+	& a \arrow[r] \arrow[d] & b \arrow[d] \\
+	& c \arrow[r] & d
+\end{tikzcd}
+\]
+のように書く（\href{https://blog.miz-ar.info/2017/06/commutative-diagrams-in-latex/}{参考にしたURL}）.
+
+%図を挿入するときは
+%\begin{figure}[hbtp]
+%	\centering
+%	\includegraphics[clip,width = 10.0cm]{図のファイル名}
+%	\caption{注釈}
+%	\label{fig:label_name}
+%\end{figure}
+%
+%左右に二つの図を挿入するときは
+%\begin{figure}[hbtp]
+%	\centering
+%	\begin{subfigure}{0.4\columnwidth}
+%		\centering
+%		\includegraphics[clip,width = \columnwidth]{図1のファイル名}
+%		\caption{注釈}
+%		\label{fig:label_name1}
+%	\end{subfigure}
+%	\begin{subfigure}{0.4\columnwidth}
+%		\centering
+%		\includegraphics[clip,width = \columnwidth]{図2のファイル名}
+%		\caption{注釈}
+%		\label{fig:label_name2}
+%	\end{subfigure}	
+%\end{figure}
+
+% --------------------------------------------------------------------------
+
+\section{文献引用} \label{sec:bib}
+
+% --------------------------------------------------------------------------
+
+文献の内容をbibファイルにbibtex形式でMathSciNetなどからコピペした上で\cite[定理 1.1]{AM}などとして文献を引用する.
+本当はciteコマンドの前に半角スペースではなくチルダを使うことで行頭への出力を禁止するが, mypackage.sty内で読み込んだciteパッケージの効果によりチルダを使わずとも行頭への出力を禁止できる.
+
+% --------------------------------------------------------------------------
+
+\section*{謝辞}
+
+% --------------------------------------------------------------------------
+
+mycommand.styで定義しているコマンドの一部は松坂俊輝さんに教えて頂いたものを使っています.
+また, このテンプレートはインターネット上に公開されている膨大な知見をもとに作成されています.
+ここに感謝いたします.
+
+% --------------------------------------------------------------------------
+
+%bibtexで文献引用
+\bibliographystyle{alpha}
+\bibliography{myrefs} % myrefs.bibに書いた文献データを引用
+
+% --------------------------------------------------------------------------
+\end{document}
+% --------------------------------------------------------------------------
