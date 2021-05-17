@@ -8,5 +8,6 @@
 *.fls
 *.log
 *.out
+*.toc
 *.xcp
 *_temp.tex
