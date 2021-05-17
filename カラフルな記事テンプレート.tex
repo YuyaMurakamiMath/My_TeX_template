@@ -1,5 +1,4 @@
 \documentclass[11pt,a4paper,oneside,lualatex]{ltjsarticle} % LuaLaTeXの場合
-%\documentclass[11pt,a4paper,oneside]{jsarticle} % LaTeX + dvipdfmxの場合
 %\documentclass[11pt,a4paper,oneside,titlepage,lualatex]{ltjsreport} % 表紙付き, 章から始まる形式
 
 %SumatraPDFの逆順検索でエラーが出た時は以下のコマンドラインをSumatraPDFの設定→オプションで入力する
@@ -15,6 +14,7 @@
 
 \usepackage{mypackage} % よく使うパッケージ. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmypackage.styを読み込む
 \usepackage{mycommand} % 自分で定義したコマンド. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmycommand.styを読み込む
+
 % --------------------------------------------------------------------------
 %		定理環境
 % --------------------------------------------------------------------------
@@ -38,7 +38,6 @@
 
 %目次にもハイパーリンクが付く. プリアンブルのできるだけ後ろに書く. 
 \usepackage[luatex, pdfencoding=auto]{hyperref}
-%\usepackage{pxjahyper}%hyperref読み込みの直後に. LaTeX + dvipdfmxの場合に日本語の文字化けを防ぐために使う
 \hypersetup{% hyperrefオプションリスト
 	colorlinks=true,
 	linkcolor=orange, % リンクの色
@@ -143,7 +142,6 @@ $ \N, \frakp, \calA, \Hom(A, B), \abs{x} $などのコマンドを楽に入力�
 
 \begin{Python}
 Copy and paste source code of Python or Sage.
-あいうえお
 \end{Python}
 \begin{result}
 Copy and paste result.
