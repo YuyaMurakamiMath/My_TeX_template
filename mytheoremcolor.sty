@@ -1,15 +1,7 @@
 % --------------------------------------------------------------------------
-%	パッケージ
-% --------------------------------------------------------------------------
-
-\usepackage{tcolorbox} % 定理環境に枠を付けるために必要
-\tcbuselibrary{breakable, skins, theorems} % 定理環境に枠を付けるために必要
-
-% --------------------------------------------------------------------------
 %	定理環境
 % --------------------------------------------------------------------------
 
-%% 定理環境
 %mythmオプションの定義（定理環境のタネ）
 \definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
 \tcbset{mythm/.style={fonttitle=\gtfamily\sffamily\bfseries\upshape,
@@ -29,7 +21,7 @@
 		before lower={\setlength{\parindent}{1\zw}}
 }}
 %定理
-\newtcbtheorem[number within=section]{thm}{定理}%
+\newtcbtheorem[use counter from=theoremcounter]{thm}{定理}%
 {mythm}{th}
 \newcommand{\thref}[1]{{\bfseries\sffamily 定理 \ref{th:#1}}}
 %命題
@@ -48,82 +40,69 @@
 {mythm}{qu}
 \newcommand{\quref}[1]{{\bfseries\sffamily 疑問 \ref{qu:#1}}}
 
-%定義
-\newtcbtheorem[use counter from=thm]{dfn}{定義}%
-{mythm,
+%mydfnオプションの定義
+\tcbset{mydfn/.style={mythm,
 	colframe=blue!30!black,%%%本文の枠の色
 	colback=blue!30!black!2!white,%%%本文の背景色
 	colbacktitle=blue!30!black,%%%タイトルの背景の色
 	borderline south={2pt}{-2pt}{blue!30!black},
-}{de}
+}}
+%定義
+\newtcbtheorem[use counter from=thm]{dfn}{定義}%
+{mydfn}{de}
 \newcommand{\deref}[1]{{\bfseries\sffamily 定義 \ref{de:#1}}}
 %記号
 \newtcbtheorem{nota}{記号}%
-{mythm,
+{mydfn,
 	theorem name,%定理番号を付けない
-	colframe=blue!30!black,%%%本文の枠の色
-	colback=blue!30!black!2!white,%%%本文の背景色
-	colbacktitle=blue!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{blue!30!black},
 }{no}
 
-%補題
-\newtcbtheorem[use counter from=thm]{lem}{補題}%
-{mythm,
+%mylemオプションの定義
+\tcbset{mylem/.style={mythm,
 	colframe=green!30!black,%%%本文の枠の色
 	colback=green!30!black!2!white,%%%本文の背景色
 	colbacktitle=green!30!black,%%%タイトルの背景の色
 	borderline south={2pt}{-2pt}{green!30!black},
-}{le}
+}}
+%補題
+\newtcbtheorem[use counter from=thm]{lem}{補題}%
+{mylem}{le}
 \newcommand{\leref}[1]{{\bfseries\sffamily 補題 \ref{le:#1}}}
 %注意
 \newtcbtheorem[use counter from=thm]{rem}{注意}%
-{mythm,
-	colframe=green!30!black,%%%本文の枠の色
-	colback=green!30!black!2!white,%%%本文の背景色
-	colbacktitle=green!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{green!30!black},
-}{re}
+{mylem}{re}
 \newcommand{\reref}[1]{{\bfseries\sffamily 注意 \ref{re:#1}}}
 %主張
 \newtcbtheorem[use counter from=thm]{clm}{主張}%
-{mythm,
-	colframe=green!30!black,%%%本文の枠の色
-	colback=green!30!black!2!white,%%%本文の背景色
-	colbacktitle=green!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{green!30!black},
-}{cl}
+{mylem}{cl}
 \newcommand{\clref}[1]{{\bfseries\sffamily 主張 \ref{cl:#1}}}
 %例
 \newtcbtheorem[use counter from=thm]{ex}{例}%
-{mythm,
-	colframe=green!30!black,%%%本文の枠の色
-	colback=green!30!black!2!white,%%%本文の背景色
-	colbacktitle=green!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{green!30!black},
-}{ex}
+{mylem}{ex}
 \newcommand{\exref}[1]{{\bfseries\sffamily 例 \ref{ex:#1}}}
 %観察
 \newtcbtheorem{obs}{観察}%
-{mythm,
+{mylem,
 	theorem name,%定理番号を付けない
-	colframe=green!30!black,%%%本文の枠の色
-	colback=green!30!black!2!white,%%%本文の背景色
-	colbacktitle=green!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{green!30!black},
 }{ob}
 
-%演習問題
+%myexcオプションの定義
 \definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
-\newtcbtheorem[number within=chapter]{exc}{演習問題}%
-{mythm,colframe=charcoal,colback=charcoal!2!white,colbacktitle=charcoal,borderline south={2pt}{-2pt}{charcoal},}{exc}
-\newcommand{\excref}[1]{{\bfseries\sffamily 質問 \ref{exc:#1}}}
-%\newtcbtheorem[use counter from=thm]{example}{例}%
-%{mythm,
-%	colframe=charcoal,colback=charcoal!2!white,colbacktitle=charcoal,borderline south={2pt}{-2pt}{charcoal},}{ex}
-%\newcommand{\exref}[1]{{\bfseries\sffamily 例 \ref{ex:#1}}}
+\tcbset{myexc/.style={mythm,
+	colframe=charcoal,%%%本文の枠の色
+	colback=charcoal!2!white,%%%本文の背景色
+	colbacktitle=charcoal,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{charcoal},
+}}
+%演習問題
+\newtcbtheorem[use counter from=exercisecounter]{exc}{演習問題}%
+{myexc}{exc}
+\newcommand{\excref}[1]{{\bfseries\sffamily 演習問題 \ref{exc:#1}}}
 
-%証明
+% --------------------------------------------------------------------------
+%	証明
+% --------------------------------------------------------------------------
+
 \renewcommand{\proofname}{\bf 証明}
 
 % --------------------------------------------------------------------------
@@ -143,25 +122,5 @@
 		\draw[black,line width=#3pt](frame.south west) -- (frame.north west) ;},
 	underlay last={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) -- (frame.south west) -- (frame.north west) ;},
 	fonttitle=\gtfamily, IfValueTF={#1}{title=【#2】〈#1〉}{title=【#2】},#4}
-
-%%セクションタイトルの枠
-%\usepackage{xpatch}
-%\xpatchcmd{\section}{\normalfont\Large\bfseries}{\sectionbox}{}{\PatchFailed}
-%\newcommand{\sectionbox}[1] {
-%	\begin{tcolorbox}
-%		[
-%		colframe=purple,%%%本文の枠の色
-%		colback=purple!100,%%%本文の背景色
-%		coltext=white, % text color
-%		width=\linewidth,%
-%		height=0.7cm, 
-%		halign=center,
-%		valign=center,
-%		fontupper=\large\bfseries,
-%		arc=0mm, auto outer arc,
-%		]
-%		{#1}
-%	\end{tcolorbox} 
-%} %
 
 % --------------------------------------------------------------------------
