@@ -13,7 +13,11 @@
 upLaTeX + dvipdfmx でコンパイルできる tex ファイルの作成は、必要な修正が多いことと、 LuaLaTeX を使っている自分には必要ないことから断念しました。
 すみません。
 
-ここの tex ファイルをコンパイルしたいときは、同梱されている sty ファイルに対し
+ただし、以下の sty ファイルは upLaTeX + dvipdfmx でも利用できます:
+* [mycommand.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/mycommand.sty): コマンドを楽に入力する
+* [mytheorem.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/mytheorem.sty): 日本語での定理環境
+
+ここの sty ファイルを利用したいときや tex ファイルをコンパイルしたいときは、同梱されている sty ファイルに対し
 * テキストエディタで開き、内容をプリアンプルにコピペする
 * tex ファイルと同じフォルダに置く
 * （W32TeX の場合）「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置く。\share 以下のフォルダが存在しない場合は新しく作成する
