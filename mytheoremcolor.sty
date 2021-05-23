@@ -109,7 +109,7 @@
 %	枠囲み
 % --------------------------------------------------------------------------
 
-%simplesquarebox環境の定義. \begin{simplesquarebox}{} \end{simplesquarebox}とすることで囲み枠の環境が使える
+%simplebox環境の定義. \begin{simplesquarebox}{} \end{simplesquarebox}とすることで囲み枠の環境が使える
 \tcbuselibrary{xparse} %preamble
 \DeclareTColorBox{simplebox}{ o m O{.5} O{} }% 
 {empty, left=2mm, right=2mm, top=-1mm, attach boxed title to top left={xshift=1.2\zw},
@@ -122,5 +122,73 @@
 		\draw[black,line width=#3pt](frame.south west) -- (frame.north west) ;},
 	underlay last={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) -- (frame.south west) -- (frame.north west) ;},
 	fonttitle=\gtfamily, IfValueTF={#1}{title=【#2】〈#1〉}{title=【#2】},#4}
+
+%注意書きに使えるmarker環境の定義
+\newtcolorbox{marker}[1][]{enhanced,
+	before skip=2mm,after skip=3mm,
+	boxrule=0.4pt,left=5mm,right=2mm,top=1mm,bottom=1mm,
+	colback=yellow!50,
+	colframe=yellow!20!black,
+	sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+	underlay={%
+		\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+		},
+	drop fuzzy shadow,#1}
+
+%ringnote環境の定義. tomixyさん（Twitter: @tetracalibers）による. 参考URLはhttps://tetracalibers.hatenadiary.com/entry/2021/01/10/135917
+%\begin{ringnote}[タイトル][テキスト背景色][さらなるtcolorboxオプション]
+%	テキスト
+%\end{ringnote} 
+%でリングノートの環境. 
+\usetikzlibrary{calc,%座標を使って図形を描くために必要
+	decorations.shapes}%スタンプを並べるために必要
+\usepackage{xparse}%オプション（省略可能引数）をもつコマンド作成
+\tcbuselibrary{listings,breakable,xparse,skins,hooks}
+	%listings…私の環境ではbreakableを使う際に必要
+	%breakable…ページまたぎ可能な枠を作成できる
+	%xparse…オプションをもつ枠を作成できる
+	%skins…TikZで枠のデザインを描き足せる
+	%hooks…多種多様な機能が含まれるため、とりあえず読み込んでおくと安全
+	%           たとえばunderlay unbrokenに必要
+%リング色の定義
+\definecolor{lightyellowiii}{RGB}{205,205,180}
+%spiralスタンプの定義
+\pgfdeclaredecoration{spiral}{initial}
+{
+	\state{initial}[width=\pgfdecoratedpathlength/floor(\pgfdecoratedpathlength/13pt)] 
+	{
+		\draw[draw=black,fill=white,rotate=90] (-1,-0.2) circle (3pt);%
+		\draw[very thin,rotate=90,double=lightyellowiii,%
+		double distance=1.5pt]%
+		(-1,-0.2) arc (40:-250:10pt and 2pt);
+	}
+	\state{final}
+	{
+		\pgfpathmoveto{\pgfpointdecoratedpathlast}
+	}
+}
+%リングノート枠の定義（tcolorbox）
+\DeclareTColorBox{ringnote} 
+{ O{} O{white} O{} }%Oはオプション引数（省略可能）であることを表す。#1,#3は省略したら何もしない、#2は省略したらwhiteになる
+{ enhanced,%必須
+	colback=#2,%枠内の背景色を#2にする
+	breakable,%ページまたぎ可能にする
+	sharp corners,%枠の角を尖らせる
+	left*=10mm,%枠の左辺から枠内のテキストまでの余白を調整
+	boxrule=0.4pt,%枠の囲み線の太さを0.4ptにする
+	%ここまでで枠を描く↑↑↑
+	%ここから枠にリングを書き足す↓↓↓（underlay…枠の上にTikZで描画する）
+	underlay unbroken={\draw[decorate,decoration={spiral}]  ($(interior.north west)+(1.375,0)$)--($(interior.south west)+(1.375,0)$);},%ページをまたがないときの枠のデザイン
+	underlay first={\draw[decorate,decoration={spiral}]  ($(interior.north west)+(1.375,0)$)--($(interior.south west)+(1.375,0)$);},%ページをまたぐときの最初のページの枠のデザイン
+	underlay middle={\draw[decorate,decoration={spiral}]  ($(interior.north west)+(1.375,0)$)--($(interior.south west)+(1.375,0)$);},%ページをまたぐときの途中のページの枠のデザイン
+	underlay last={\draw[decorate,decoration={spiral}]  ($(interior.north west)+(1.375,0)$)--($(interior.south west)+(1.375,0)$);},%ページをまたぐときの最後のページの枠のデザイン
+	%ここからはオプションの定義↓↓↓
+	IfValueTF={#1}%#1があるかないかによって次のように処理が異なる
+	{title=#1}%#1があるときは、#1をtitleとする（title枠が描かれる）
+	{},%#1がないときは、title枠なし
+	#3%#3があるときは、#3を枠のデザインとして追加する
+}
 
 % --------------------------------------------------------------------------
