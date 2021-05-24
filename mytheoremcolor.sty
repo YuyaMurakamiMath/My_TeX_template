@@ -17,8 +17,8 @@
 		sharp corners,%%%左上の角の調整 
 		before skip=8pt,
 		after skip=10pt,
-		before upper={\setlength{\parindent}{1\zw}},
-		before lower={\setlength{\parindent}{1\zw}}
+		before upper={\setlength{\parindent}{1\zw}}, % 行頭のインデント処理
+		before lower={\setlength{\parindent}{1\zw}} % 行頭のインデント処理
 }}
 %定理
 \newtcbtheorem[use counter from=theoremcounter]{thm}{定理}%
@@ -130,6 +130,8 @@
 	colback=yellow!50,
 	colframe=yellow!20!black,
 	sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+	before upper={\setlength{\parindent}{1\zw}}, % 行頭のインデント処理
+	before lower={\setlength{\parindent}{1\zw}} % 行頭のインデント処理
 	underlay={%
 		\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
 		\path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
@@ -189,6 +191,8 @@
 	{title=#1}%#1があるときは、#1をtitleとする（title枠が描かれる）
 	{},%#1がないときは、title枠なし
 	#3%#3があるときは、#3を枠のデザインとして追加する
+	before upper={\setlength{\parindent}{1\zw}}, % 行頭のインデント処理
+	before lower={\setlength{\parindent}{1\zw}} % 行頭のインデント処理
 }
 
 % --------------------------------------------------------------------------
