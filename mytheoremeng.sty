@@ -1,14 +1,63 @@
-\newtheorem{theoremcounter}{Theorem Counter}[section]
+% --------------------------------------------------------------------------
+%		Packages
+% --------------------------------------------------------------------------
+
+\usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
+\usepackage{autonum}% 参照した数式だけに番号を振る. *付き数式環境は使えない
+
+% --------------------------------------------------------------------------
+%		Equations
+% --------------------------------------------------------------------------
+
+\crefname{equation}{}{} % 数式参照時の表記を設定
+
+% --------------------------------------------------------------------------
+%		Theorem-like environments
+% --------------------------------------------------------------------------
 
 \theoremstyle{plain}
+
 \newtheorem{dfn}[theoremcounter]{Definition}
+\crefname{dfn}{Definition}{Definitions} % dfn環境参照時の表記を設定
+
 \newtheorem{thm}[theoremcounter]{Theorem}
+\crefname{thm}{Theorem}{Theorems} % thm環境参照時の表記を設定
+
 \newtheorem{lem}[theoremcounter]{Lemma}
+\crefname{lem}{Lemma}{Lemmas}
+
 \newtheorem{prop}[theoremcounter]{Proposition}
+\crefname{prop}{Proposition}{Propositions}
+
 \newtheorem{cor}[theoremcounter]{Corollary}
+\crefname{cor}{Corollary}{Corollaries}
+
 \newtheorem{conj}[theoremcounter]{Conjecture}
+\crefname{conj}{Conjecture}{Conjectures}
 
 \theoremstyle{definition}
+
 \newtheorem{rem}[theoremcounter]{Remark}
+\crefname{rem}{Remark}{Remarks}
+
 \newtheorem{ex}[theoremcounter]{Example}
+\crefname{ex}{Example}{Examples}
+
 \newtheorem*{nota*}{Notation}
+
+% --------------------------------------------------------------------------
+%		Figures & diagrams
+% --------------------------------------------------------------------------
+
+\crefname{fig}{Figure}{Figures}
+\crefname{tab}{Table}{Tables}
+
+% --------------------------------------------------------------------------
+%		Sections
+% --------------------------------------------------------------------------
+
+\crefformat{chap}{Chapter~#2#1#3}
+\crefformat{sec}{Section~#2#1#3}
+\crefformat{subsec}{Subsection#2#1#3}
+
+% --------------------------------------------------------------------------

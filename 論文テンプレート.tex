@@ -8,20 +8,22 @@
 
 \usepackage{mypackage} % My packages.
 \usepackage{mycommand} % My commands.
-\usepackage{mytheoremeng} % My theorem environments (English). 
 
 % --------------------------------------------------------------------------
 %		Hyperlinks
 % --------------------------------------------------------------------------
 
-\usepackage[luatex, pdfencoding=auto]{hyperref}
-\hypersetup{
-	colorlinks=false,
-%	linkcolor=orange,
-%	citecolor=cyan,
-%	urlcolor=violet,
-}
-	
+\usepackage[luatex, pdfencoding=auto,hypertexnames=false]{hyperref}
+\hypersetup{colorlinks=false}
+
+% --------------------------------------------------------------------------
+%		Theorem-like environments &  cross-reference
+% --------------------------------------------------------------------------
+
+\numberwithin{equation}{section} % Setting of equation numbers 
+\newtheorem{theoremcounter}{}[section] % Setting of theorem numbers 
+\usepackage{mytheoremeng} % My theorem environments (English) with cleveref package
+
 % --------------------------------------------------------------------------
 \begin{document}
 % --------------------------------------------------------------------------
@@ -51,10 +53,38 @@
 
 % --------------------------------------------------------------------------
 
-\begin{thm} \label{thm:main}
+\begin{thm}[{\cite{test}}] \label{thm:main}
 	hogehoge
 \end{thm}
 
+\begin{thm} \label{thm:main2}
+	hogehoge
+\end{thm}
+
+\begin{thm} \label{thm:main3}
+	hogehoge
+\end{thm}
+
+\begin{lem} \label{lem:1}
+	hogehoge
+\end{lem}
+
+\begin{equation} \label{eq:1}
+	abc
+\end{equation}
+
+\begin{equation} \label{eq:2}
+	abc
+\end{equation}
+
+\cref{thm:main} asserts that...
+
+By \cref{thm:main,thm:main2,thm:main3,lem:1,eq:1}, we have...
+
+\vspace{1em}
+
+This paper will be organized as follows. 
+In \cref{sec:2}, we define...
 
 % --------------------------------------------------------------------------
 
@@ -65,7 +95,7 @@
 
 % --------------------------------------------------------------------------
 
-\section{} \label{sec:}
+\section{} \label{sec:2}
 
 % --------------------------------------------------------------------------
 
@@ -73,8 +103,8 @@
 
 % --------------------------------------------------------------------------
 
-%\bibliographystyle{alpha}
-%\bibliography{myrefs}
+\bibliographystyle{alpha}
+\bibliography{myrefs}
 
 % --------------------------------------------------------------------------
 \end{document}

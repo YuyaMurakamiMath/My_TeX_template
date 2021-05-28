@@ -1,4 +1,49 @@
 % --------------------------------------------------------------------------
+%		cleverefパッケージ
+% --------------------------------------------------------------------------
+
+\usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
+\usepackage{autonum}% 参照した数式だけに番号を振る. *付き数式環境は使えない
+
+\newcommand{\crefrangeconjunction}{--} % 3 つ以上連番で参照するときの表記を設定
+\newcommand{\crefrangepreconjunction}{}
+\newcommand{\crefrangepostconjunction}{}
+\newcommand{\crefpairconjunction}{, }
+\newcommand{\crefmiddleconjunction}{, }
+\newcommand{\creflastconjunction}{, }
+\newcommand{\crefpairgroupconjunction}{, }
+\newcommand{\crefmiddlegroupconjunction}{, }
+\newcommand{\creflastgroupconjunction}{, }
+
+% --------------------------------------------------------------------------
+%		数式
+% --------------------------------------------------------------------------
+
+\crefname{equation}{式}{式}                % 数式参照時の表記を設定
+
+% --------------------------------------------------------------------------
+%		図表
+% --------------------------------------------------------------------------
+
+\crefname{fig}{図}{図}
+\crefname{subfig}{図}{図}
+\crefname{tab}{表}{表}
+\crefname{subtab}{表}{表}
+
+% --------------------------------------------------------------------------
+%		節番号など
+% --------------------------------------------------------------------------
+
+\crefname{part}{}{}
+\creflabelformat{part}{#2#1部#3}
+\crefname{chap}{}{}
+\creflabelformat{chap}{#2#1章#3}
+\crefname{section}{}{}
+\creflabelformat{section}{#2#1節#3}
+\crefname{subsection}{}{}
+\creflabelformat{subsection}{#2#1項#3}
+
+% --------------------------------------------------------------------------
 %	定理環境
 % --------------------------------------------------------------------------
 
@@ -20,25 +65,12 @@
 		before upper={\setlength{\parindent}{1\zw}}, % 行頭のインデント処理
 		before lower={\setlength{\parindent}{1\zw}} % 行頭のインデント処理
 }}
-%定理
-\newtcbtheorem[use counter from=theoremcounter]{thm}{定理}%
-{mythm}{th}
-\newcommand{\thref}[1]{{\bfseries\sffamily 定理 \ref{th:#1}}}
-%命題
-\newtcbtheorem[use counter from=thm]{prop}{命題}%
-{mythm}{pr}
-\newcommand{\prref}[1]{{\bfseries\sffamily 命題 \ref{pr:#1}}}
-%系
-\newtcbtheorem[use counter from=thm]{cor}{系}%
-{mythm}{co}
-%予想
-\newtcbtheorem[use counter from=thm]{conj}{予想}%
-{mythm}{con}
-\newcommand{\conref}[1]{{\bfseries\sffamily 予想 \ref{con:#1}}}
-%質問
-\newtcbtheorem[use counter from=thm]{que}{疑問}%
-{mythm}{qu}
-\newcommand{\quref}[1]{{\bfseries\sffamily 疑問 \ref{qu:#1}}}
+
+\newtcbtheorem[use counter from=theoremcounter,crefname={定理}{定理}]{thm}{定理}{mythm}{thm}
+\newtcbtheorem[use counter from=theoremcounter,crefname={命題}{命題}]{prop}{命題}{mythm}{prop}
+\newtcbtheorem[use counter from=theoremcounter,crefname={系}{系}]{cor}{系}{mythm}{cor}
+\newtcbtheorem[use counter from=theoremcounter,crefname={予想}{予想}]{conj}{予想}{mythm}{conj}
+\newtcbtheorem[use counter from=theoremcounter,crefname={疑問}{疑問}]{que}{疑問}{mythm}{que}
 
 %mydfnオプションの定義
 \tcbset{mydfn/.style={mythm,
@@ -47,15 +79,11 @@
 	colbacktitle=blue!30!black,%%%タイトルの背景の色
 	borderline south={2pt}{-2pt}{blue!30!black},
 }}
-%定義
-\newtcbtheorem[use counter from=thm]{dfn}{定義}%
-{mydfn}{de}
-\newcommand{\deref}[1]{{\bfseries\sffamily 定義 \ref{de:#1}}}
-%記号
-\newtcbtheorem{nota}{記号}%
-{mydfn,
+
+\newtcbtheorem[use counter from=theoremcounter,crefname={定義}{定義}]{dfn}{定義}{mydfn}{dfn}
+\newtcbtheorem[use counter from=theoremcounter,crefname={記号}{記号}]{nota}{記号}{mydfn,
 	theorem name,%定理番号を付けない
-}{no}
+}{}
 
 %mylemオプションの定義
 \tcbset{mylem/.style={mythm,
@@ -64,27 +92,12 @@
 	colbacktitle=green!30!black,%%%タイトルの背景の色
 	borderline south={2pt}{-2pt}{green!30!black},
 }}
-%補題
-\newtcbtheorem[use counter from=thm]{lem}{補題}%
-{mylem}{le}
-\newcommand{\leref}[1]{{\bfseries\sffamily 補題 \ref{le:#1}}}
-%注意
-\newtcbtheorem[use counter from=thm]{rem}{注意}%
-{mylem}{re}
-\newcommand{\reref}[1]{{\bfseries\sffamily 注意 \ref{re:#1}}}
-%主張
-\newtcbtheorem[use counter from=thm]{clm}{主張}%
-{mylem}{cl}
-\newcommand{\clref}[1]{{\bfseries\sffamily 主張 \ref{cl:#1}}}
-%例
-\newtcbtheorem[use counter from=thm]{ex}{例}%
-{mylem}{ex}
-\newcommand{\exref}[1]{{\bfseries\sffamily 例 \ref{ex:#1}}}
-%観察
-\newtcbtheorem{obs}{観察}%
-{mylem,
-	theorem name,%定理番号を付けない
-}{ob}
+
+\newtcbtheorem[use counter from=theoremcounter,crefname={補題}{補題}]{lem}{補題}{mylem}{lem}
+\newtcbtheorem[use counter from=theoremcounter,crefname={注意}{注意}]{rem}{注意}{mylem}{rem}
+\newtcbtheorem[use counter from=theoremcounter,crefname={主張}{主張}]{clm}{主張}{mylem}{clm}
+\newtcbtheorem[use counter from=theoremcounter,crefname={例}{例}]{ex}{例}{mylem}{ex}
+\newtcbtheorem[use counter from=theoremcounter,crefname={観察}{観察}]{obs}{観察}{mylem}{obs}
 
 %myexcオプションの定義
 \definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
@@ -94,10 +107,8 @@
 	colbacktitle=charcoal,%%%タイトルの背景の色
 	borderline south={2pt}{-2pt}{charcoal},
 }}
-%演習問題
-\newtcbtheorem[use counter from=exercisecounter]{exc}{演習問題}%
-{myexc}{exc}
-\newcommand{\excref}[1]{{\bfseries\sffamily 演習問題 \ref{exc:#1}}}
+
+\newtcbtheorem[use counter from=exercisecounter,crefname={演習問題}{演習問題}]{exc}{演習問題}{myexc}{exc}
 
 % --------------------------------------------------------------------------
 %	証明

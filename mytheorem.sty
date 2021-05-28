@@ -1,15 +1,93 @@
+% --------------------------------------------------------------------------
+%		パッケージ
+% --------------------------------------------------------------------------
+
+\usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
+
+% 参照した数式だけに番号を振るautonumパッケージ. *付き数式環境は使えない. 
+\let\etoolboxforlistloop\forlistloop % save the good meaning of \forlistloop
+\usepackage{autonum} 
+\let\forlistloop\etoolboxforlistloop % restore the good meaning of \forlistloop
+
+\newcommand{\crefrangeconjunction}{--} % 3 つ以上連番で参照するときの表記を設定
+\newcommand{\crefrangepreconjunction}{}
+\newcommand{\crefrangepostconjunction}{}
+\newcommand{\crefpairconjunction}{, }
+\newcommand{\crefmiddleconjunction}{, }
+\newcommand{\creflastconjunction}{, }
+\newcommand{\crefpairgroupconjunction}{, }
+\newcommand{\crefmiddlegroupconjunction}{, }
+\newcommand{\creflastgroupconjunction}{, }
+
+% --------------------------------------------------------------------------
+%		数式
+% --------------------------------------------------------------------------
+
+\crefname{equation}{式}{式}                % 数式参照時の表記を設定
+
+% --------------------------------------------------------------------------
+%		定理環境
+% --------------------------------------------------------------------------
+
 \theoremstyle{definition} %Theorem 環境の見出しを太字、本文に斜体を使わない
+
 \newtheorem{dfn}[theoremcounter]{定義}
+\crefname{dfn}{定義}{定義} % dfn環境参照時の表記を設定
+
 \newtheorem{thm}[theoremcounter]{定理}
+\crefname{thm}{定理}{定理}
+
 \newtheorem{lem}[theoremcounter]{補題}
+\crefname{lem}{補題}{補題}
+
 \newtheorem{prop}[theoremcounter]{命題}
+\crefname{prop}{命題}{命題}
+
 \newtheorem{cor}[theoremcounter]{系}
+\crefname{cor}{系}{系}
+
 \newtheorem{rem}[theoremcounter]{注意}
+\crefname{rem}{注意}{注意}
+
 \newtheorem{ex}[theoremcounter]{例}
+\crefname{ex}{例}{例}
+
 \newtheorem{conj}[theoremcounter]{予想}
+\crefname{conj}{予想}{予想}
+
 \newtheorem{que}[theoremcounter]{疑問}
+\crefname{que}{疑問}{疑問}
+
 \newtheorem{clm}[theoremcounter]{主張}
+\crefname{clm}{主張}{主張}
+
 \newtheorem*{nota}{記号}
+
 \newtheorem*{obs}{観察}
 
 \newtheorem{exc}[exercisecounter]{演習問題}
+\crefname{exc}{演習問題}{演習問題}
+
+% --------------------------------------------------------------------------
+%		図表
+% --------------------------------------------------------------------------
+
+\crefname{fig}{図}{図}
+\crefname{subfig}{図}{図}
+\crefname{tab}{表}{表}
+\crefname{subtab}{表}{表}
+
+% --------------------------------------------------------------------------
+%		節番号など
+% --------------------------------------------------------------------------
+
+\crefname{part}{}{}
+\creflabelformat{part}{#2#1部#3}
+\crefname{chap}{}{}
+\creflabelformat{chap}{#2#1章#3}
+\crefname{section}{}{}
+\creflabelformat{section}{#2#1節#3}
+\crefname{subsection}{}{}
+\creflabelformat{subsection}{#2#1項#3}
+
+% --------------------------------------------------------------------------
