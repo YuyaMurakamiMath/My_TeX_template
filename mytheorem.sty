@@ -29,10 +29,10 @@
 %		図表
 % --------------------------------------------------------------------------
 
-\crefname{fig}{図}{図}
-\crefname{subfig}{図}{図}
-\crefname{tab}{表}{表}
-\crefname{subtab}{表}{表}
+\crefname{figure}{図}{図}
+\crefname{subfigure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{subtable}{表}{表}
 
 % --------------------------------------------------------------------------
 %		節番号など
@@ -46,6 +46,8 @@
 \creflabelformat{section}{#2#1節#3}
 \crefname{subsection}{}{}
 \creflabelformat{subsection}{#2#1項#3}
+
+\crefname{appendix}{補遺}{補遺}
 
 %\cref{item:hogehoge}で参照
 \crefname{enumi}{}{}
@@ -89,11 +91,20 @@
 \newtheorem{clm}[theoremcounter]{主張}
 \crefname{clm}{主張}{主張}
 
+\newtheorem{assump}[theoremcounter]{仮定}
+\crefname{assump}{仮定}{仮定}
+
 \newtheorem*{nota}{記号}
 
 \newtheorem*{obs}{観察}
 
 \newtheorem{exc}[exercisecounter]{演習問題}
 \crefname{exc}{演習問題}{演習問題}
+
+% --------------------------------------------------------------------------
+%	証明
+% --------------------------------------------------------------------------
+
+\renewcommand{\proofname}{\bf 証明}
 
 % --------------------------------------------------------------------------
