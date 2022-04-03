@@ -5,6 +5,8 @@
 \usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
 \usepackage{autonum}% 参照した数式だけに番号を振る. *付き数式環境は使えない
 
+\newcommand{\crefrangeconjunction}{--} % 3 つ以上連番で参照するときの表記を設定
+
 % --------------------------------------------------------------------------
 %		Equations
 % --------------------------------------------------------------------------
@@ -35,6 +37,9 @@
 \newtheorem{conj}[theoremcounter]{Conjecture}
 \crefname{conj}{Conjecture}{Conjectures}
 
+\newtheorem{que}[theoremcounter]{Question}
+\crefname{que}{Question}{Questions}
+
 \theoremstyle{definition}
 
 \newtheorem{rem}[theoremcounter]{Remark}
@@ -44,6 +49,8 @@
 \crefname{ex}{Example}{Examples}
 
 \newtheorem*{nota*}{Notation}
+
+\newtheorem*{obs*}{Observation}
 
 % --------------------------------------------------------------------------
 %		Figures & diagrams
@@ -59,5 +66,11 @@
 \crefformat{chap}{Chapter~#2#1#3}
 \crefformat{sec}{Section~#2#1#3}
 \crefformat{subsec}{Subsection#2#1#3}
+
+%\cref{item:hogehoge}で参照
+\crefname{enumi}{}{}
+\crefname{enumii}{}{}
+\crefname{enumiii}{}{}
+\crefname{enumiiii}{}{}
 
 % --------------------------------------------------------------------------

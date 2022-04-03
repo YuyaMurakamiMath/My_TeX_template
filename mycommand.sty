@@ -101,9 +101,11 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
 
+\DeclareMathOperator{\res}{res} % 制限
+
 \DeclareMathOperator{\Frac}{Frac} % 商体
 
-\DeclareMathOperator{\Res}{Res} % 留数
+\DeclareMathOperator*{\Res}{Res} % 留数
 
 \DeclareMathOperator{\vol}{vol} % 体積
 
@@ -145,6 +147,8 @@
 \newcommand{\sprod}[1]{\left\langle#1\right\rangle} % 内積
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert} % 絶対値
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % ノルム
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % 床関数
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} % 天井関数
 \newcommand{\restrict}[2]{\left. #1 \right|_{#2}} % \restrict{f}{U}でfのUへの制限. \restrict{f}{k}[\gamma]とすればfへの\gammaの重さk作用
 \newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}% \relmiddle{|}で括弧に合わせて大きくなる\mid
 

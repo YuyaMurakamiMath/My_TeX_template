@@ -5,6 +5,7 @@
 \usepackage{amsmath, amsthm, amssymb, mathtools, mathrsfs}
 \usepackage{extarrows} % \xlongrightarrowとかの凝った矢印
 \usepackage{enumerate} % 箇条書き
+\usepackage{enumitem} %箇条書きのenumerate環境をパワーアップ
 
 %\mathtoolsset{showonlyrefs,showmanualtags} % 参照した数式だけに数式番号を付ける. 参照は\refではだめで\eqrefを使う必要がある. cleverefパッケージとは両立しない. 
 
@@ -14,8 +15,9 @@
 
 \usepackage{bxpapersize} % 出力用紙サイズを設定
 \usepackage{graphicx,color} % dvipdfmxを利用するときは\documentclass[dvipdfmx]{jsarticle}のように\documentclassのオプションにdvipdfmxを付けないとgraphicxパッケージの挙動がおかしくなる
-\usepackage{xcolor} % 色コマンドを増やす. cyan, orange, violetあたりを使うと良さそう
+\usepackage[svgnames]{xcolor} % 色コマンドを増やす. cyan, orange, violetあたりを使うと良さそう
 \usepackage[normalem]{ulem} % \sout{}で取り消し線を引く. normalemオプションで引用文献のタイトルに下線が付かなくなる
+\usepackage{pxrubrica} % \ruby{漢字}{かんじ}のようにしてルビを振る
 
 % --------------------------------------------------------------------------
 %		図と表
