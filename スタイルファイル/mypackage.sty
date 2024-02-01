@@ -17,13 +17,13 @@
 \usepackage{graphicx,color} % dvipdfmxを利用するときは\documentclass[dvipdfmx]{jsarticle}のように\documentclassのオプションにdvipdfmxを付けないとgraphicxパッケージの挙動がおかしくなる
 \usepackage[svgnames]{xcolor} % 色コマンドを増やす. cyan, orange, violetあたりを使うと良さそう
 \usepackage[normalem]{ulem} % \sout{}で取り消し線を引く. normalemオプションで引用文献のタイトルに下線が付かなくなる
-\usepackage{pxrubrica} % \ruby{漢字}{かんじ}のようにしてルビを振る
 
 % --------------------------------------------------------------------------
 %		図と表
 % --------------------------------------------------------------------------
 
-\usepackage{tikz-cd} % 可換図式
+\usepackage{tikz}
+\usetikzlibrary{cd}% 可換図式
 \usepackage{array, booktabs} % 表
 \usepackage{colortbl} % 表の色付け
 \usepackage{tabularx} % 表のセル内改行

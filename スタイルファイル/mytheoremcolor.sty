@@ -44,21 +44,165 @@
 \creflabelformat{subsection}{#2#1項#3}
 
 % --------------------------------------------------------------------------
-%	定理環境
+%		目次の枠囲み
+% --------------------------------------------------------------------------
+
+\newtcolorbox{contentsbox}{%
+	breakable,%%%ページマタギOK
+	enhanced jigsaw,%%%tikzを用いた記法の処理
+	title={目次},
+	fonttitle=\bfseries\Large,
+	colback=white,%%%本文の背景色
+	colframe=red!50!black,%%%本文の枠の色
+	before=\par\bigskip\noindent,
+	%	interior style={fill overzoom image=goldshade.png,fill image opacity=0.25},
+	colbacktitle=red!50!black,%%%タイトルの背景の色
+	enlargepage flexible=\baselineskip,pad at break*=3mm,
+	%	watermark color=yellow!75!red!25!white,
+	%	watermark text={\bfseries\Large Contents},
+	attach boxed title to top center={yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+	boxed title style={enhanced,boxrule=0.5mm,
+		frame code={ \path[tcb fill frame] ([xshift=-4mm]frame.west) -- (frame.north west)
+			-- (frame.north east) -- ([xshift=4mm]frame.east)
+			-- (frame.south east) -- (frame.south west) -- cycle; },
+		%		interior code={ \path[tcb fill interior] ([xshift=-2mm]interior.west)
+		%			-- (interior.north west) -- (interior.north east)
+		%			-- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+		%			-- cycle;}
+	},
+	%	drop fuzzy shadow
+}
+
+% --------------------------------------------------------------------------
+%		節タイトルの枠囲み
+% --------------------------------------------------------------------------
+
+%枠囲み環境のタネ
+\tcbset{sectionboxseed/.style={
+		enhanced,%
+		colback=white,%
+		colframe=black!25!white,%
+		boxrule=1pt,%
+		leftrule=25pt,%
+		%		height=30pt,% 
+		overlay={%
+			\draw node at ($(frame.west) + (12.5pt,0pt)$) {\hbox{\centering\Large\bfseries\gtfamily\thesection}};% 左端中央からleftruleの値の1/2だけずれた位置に数字を入力
+			}%
+		}%
+}
+
+%セクションの枠囲み環境
+\newtcolorbox{sectionbox}{sectionboxseed}
+
+%番号付きセクションの環境設定
+\titleformat{\section} % \sectionを変更する
+	[block] % 形状
+	{}% フォントサイズ
+	{% ラベルの枠囲み
+	\begin{sectionbox}
+		\Large\bfseries\gtfamily#1%
+	\end{sectionbox}
+	}
+	{0pt} % ラベルと見出しの間に入れる空白
+	{\vspace{-10pt}}% 見出し文字列の前に入れる文字
+	[]% 見出し文字列の後に入れる文字
+	
+%セクション枠囲み周りの空白
+\titlespacing{\section}
+{0pt}%見出し左の空き（hang，block，display，frameの時）または見出しの長さ（その他）
+{5em}%見出し上の空き
+{1em}%見出しとその後の本文との空き. hang/block/display/frameとその他で方向が異なる
+[0pt]%見出し右の空き. hang，block，display，frameのみ
+
+%番号無しセクションの枠囲み環境
+\tcbset{sectionboxnumberlessseed/.style={sectionboxseed,
+		overlay={%
+			\draw node at ($(frame.west) + (12.5pt,0pt)$) {\hbox{\centering\Large\bfseries\gtfamily%\thesection
+			}};% 左端中央からleftruleの値の1/2だけずれた位置に数字を入力
+		}%
+	}
+}
+\newtcolorbox{sectionboxnumberless}{sectionboxnumberlessseed}
+
+%番号無しセクションの環境設定
+\titleformat{name=\section,numberless} % \sectionを変更する
+	[block] % 形状
+	{}% フォントサイズ
+	{% ラベルの枠囲み
+	\begin{sectionboxnumberless}
+		\Large\bfseries\gtfamily#1%
+	\end{sectionboxnumberless}
+	}	
+	{0pt} % ラベルと見出しの間に入れる空白
+	{\vspace{-10pt}}% 見出し文字列の前に入れる文字
+	[]% 見出し文字列の後に入れる文字
+
+%サブセクションの枠囲み環境
+\tcbset{subsectionboxseed/.style={sectionboxseed,
+		colback=black!10!white,% background
+		colframe=black!10!white,% frame colour
+		coltext=black, % text color
+		overlay={%
+			\draw node at ($(frame.west) + (15pt,0pt)$) {\hbox{\centering\large\bfseries\gtfamily\thesubsection}};% 左端中央からleftruleの値の1/2だけずれた位置に数字を入力
+			}
+		}
+}
+\newtcolorbox{subsectionbox}{subsectionboxseed}
+
+%番号付きサブセクションの環境設定
+\titleformat{\subsection} % \subsectionを変更する
+	[block] % 形状
+	{}% フォントサイズ
+	{% ラベルの枠囲み
+	\begin{subsectionbox}
+		\Large\bfseries\gtfamily#1%
+	\end{subsectionbox}
+	}
+	{0pt} % ラベルと見出しの間に入れる空白
+	{\vspace{-10pt}}% 見出し文字列の前に入れる文字
+	[]% 見出し文字列の後に入れる文字
+
+%セクション枠囲み周りの空白
+\titlespacing{\section}
+{0pt}%見出し左の空き（hang，block，display，frameの時）または見出しの長さ（その他）
+{3em}%見出し上の空き
+{1em}%見出しとその後の本文との空き. hang/block/display/frameとその他で方向が異なる
+[0pt]%見出し右の空き. hang，block，display，frameのみ
+
+% --------------------------------------------------------------------------
+%		定理環境
 % --------------------------------------------------------------------------
 
 %mythmオプションの定義（定理環境のタネ）
+%色名
 \definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
-\tcbset{mythm/.style={fonttitle=\gtfamily\sffamily\bfseries\upshape,
+%注釈の設定
+%注釈が2行に亙る場合はみ出てしまう。多分tcolorboxじゃなくてtcboxを使ってるから。対処法不明
+\tcbset{formbox/.style={
+	enhanced,%%%tikzを用いた記法の処理
+	tikznode,%注釈が2行に亙る場合に改行する処理。でもうまくいかない
+	frame empty,%
+	size=minimal,%
+	boxsep=2pt,%
+	arc=1pt,%
+	on line,%
+	colback=burgundy!2!white,%%%本文の背景色
+}}
+\newtcbox{\formboxthm}{formbox}
+%定理環境の設定
+\tcbset{mythm/.style={fonttitle=\gtfamily\sffamily\bfseries\upshape,		
 		enhanced,%%%tikzを用いた記法の処理
 		colframe=burgundy,%%%本文の枠の色
 		colback=burgundy!2!white,%%%本文の背景色
 		colbacktitle=burgundy,%%%タイトルの背景の色
-		boxrule=0pt,%%%枠線の太さ
-		borderline south={2pt}{-2pt}{burgundy},
+%		coltitle=black,%%%タイトルの色
+		description formatter=\formboxthm,%注釈欄
+		boxrule=2pt,%%%枠線の太さ
+%		borderline north={2pt}{-2pt}{burgundy},%枠の上に線
+		borderline south={2pt}{-2pt}{burgundy},%枠の下に線
 		left*=1\zw,right*=1\zw,%%%box内左右の余白
 		theorem style=standard,
-		breakable,%%%ページマタギOK
+		breakable,%%%ページまたぎOK
 		sharp corners,%%%左上の角の調整 
 		before skip=8pt,
 		after skip=10pt,
@@ -73,23 +217,43 @@
 \newtcbtheorem[use counter from=theoremcounter,crefname={疑問}{疑問}]{que}{疑問}{mythm}{que}
 
 %mydfnオプションの定義
+%注釈の設定
+\tcbset{formboxdfn/.style={formbox,
+		colback=blue!30!black!2!white,%%%本文の背景色
+}}
+\newtcbox{\formboxdfn}{formboxdfn}
+%定理環境の設定
 \tcbset{mydfn/.style={mythm,
 	colframe=blue!30!black,%%%本文の枠の色
 	colback=blue!30!black!2!white,%%%本文の背景色
-	colbacktitle=blue!30!black,%%%タイトルの背景の色
-	borderline south={2pt}{-2pt}{blue!30!black},
+	colbacktitle=blue!10!black,%%%タイトルの背景の色
+%	coltitle=black,%%%タイトルの色
+	description formatter=\formboxdfn,%注釈欄
+%	borderline north={2pt}{-2pt}{blue!30!black},%枠の上に線
+	borderline south={2pt}{-2pt}{blue!30!black},%枠の下に線
 }}
 
 \newtcbtheorem[use counter from=theoremcounter,crefname={定義}{定義}]{dfn}{定義}{mydfn}{dfn}
-\newtcbtheorem[use counter from=theoremcounter,crefname={記号}{記号}]{nota}{記号}{mydfn,
+\newtcbtheorem[use counter from=theoremcounter,crefname={記号}{記号}]{symb}{記号}{mydfn,
 	theorem name,%定理番号を付けない
 }{}
+%\newtcbtheorem[use counter from=theoremcounter,crefname={記法}{記法}]{nota*}{記法}{mydfn,
+%theorem name,%定理番号を付けない
+%}{}
+\newtcbtheorem[use counter from=theoremcounter,crefname={記法}{記法}]{nota}{記法}{mydfn}{nota}
+
 
 %mylemオプションの定義
+%注釈の設定
+\tcbset{formboxlem/.style={formbox,
+		colback=green!30!black!2!white,%%%本文の背景色
+}}
+\newtcbox{\formboxlem}{formboxlem}
 \tcbset{mylem/.style={mythm,
 	colframe=green!30!black,%%%本文の枠の色
 	colback=green!30!black!2!white,%%%本文の背景色
 	colbacktitle=green!30!black,%%%タイトルの背景の色
+	description formatter=\formboxlem,%注釈欄
 	borderline south={2pt}{-2pt}{green!30!black},
 }}
 
@@ -101,10 +265,16 @@
 
 %myexcオプションの定義
 \definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+%注釈の設定
+\tcbset{formboxexc/.style={formbox,
+		colback=charcoal!2!white,%%%本文の背景色
+}}
+\newtcbox{\formboxexc}{formboxexc}
 \tcbset{myexc/.style={mythm,
 	colframe=charcoal,%%%本文の枠の色
 	colback=charcoal!2!white,%%%本文の背景色
 	colbacktitle=charcoal,%%%タイトルの背景の色
+	description formatter=\formboxexc,%注釈欄
 	borderline south={2pt}{-2pt}{charcoal},
 }}
 

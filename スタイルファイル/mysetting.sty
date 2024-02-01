@@ -1,0 +1,26 @@
+% --------------------------------------------------------------------------
+%		箇条書きの番号の設定
+% --------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\theenumi}{{\upshape (\@roman\c@enumi)}}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\p@enumii}{}
+\renewcommand{\theenumii}{{\upshape (\@alph\c@enumii)}}
+\renewcommand{\labelenumii}{\theenumii}
+\makeatother
+
+% --------------------------------------------------------------------------
+%		ハイパーリンクの設定
+% ------------------------------------------------------------------------
+%目次にもハイパーリンクが付く. プリアンブルのできるだけ後ろに書く. 
+\usepackage[luatex, pdfencoding=auto]{hyperref}
+%\usepackage{pxjahyper}%hyperref読み込みの直後に. LaTeX + dvipdfmxの場合に日本語の文字化けを防ぐために使う
+\hypersetup{% hyperrefオプションリスト
+	colorlinks=true,
+	linkcolor=orange,
+	citecolor=cyan,
+	urlcolor=violet,
+}
+
+% --------------------------------------------------------------------------

@@ -17,10 +17,8 @@
 %		Theorem-like environments
 % --------------------------------------------------------------------------
 
+% 斜体の環境
 \theoremstyle{plain}
-
-\newtheorem{dfn}[theoremcounter]{Definition}
-\crefname{dfn}{Definition}{Definitions} % dfn環境参照時の表記を設定
 
 \newtheorem{thm}[theoremcounter]{Theorem}
 \crefname{thm}{Theorem}{Theorems} % thm環境参照時の表記を設定
@@ -40,7 +38,11 @@
 \newtheorem{que}[theoremcounter]{Question}
 \crefname{que}{Question}{Questions}
 
+% 立体の環境
 \theoremstyle{definition}
+
+\newtheorem{dfn}[theoremcounter]{Definition}
+\crefname{dfn}{Definition}{Definitions} % dfn環境参照時の表記を設定
 
 \newtheorem{rem}[theoremcounter]{Remark}
 \crefname{rem}{Remark}{Remarks}

@@ -1,0 +1,309 @@
+
+\usepackage{amsmath, amsthm, amssymb, mathtools, mathrsfs}
+\usepackage{enumerate}
+%\usepackage[all]{xy}%LuaLaTeXだとうまく動かない. \usepackage{tikz-cd}を使うと良し
+\usepackage{tikz-cd}
+\usepackage{array, booktabs}
+\usepackage{float}
+\usepackage{extarrows}
+\usepackage{tabularx}
+\usepackage{graphicx,color}
+\usepackage{colortbl}%表の色付け
+\usepackage{xcolor}%色コマンドを増やす. cyan, orange, violetあたりを使うと良さそう
+\usepackage{tcolorbox}%定理環境に枠を付けるために必要
+\tcbuselibrary{breakable, skins, theorems}%定理環境に枠を付けるために必要
+\usepackage{bxpapersize}
+\usepackage{bm}%小文字の太文字斜体
+\usepackage{bbm}%数字を白抜き文字にする
+\usepackage{ulem}%\sout{}で取り消し線を引く
+
+
+\mathtoolsset{showonlyrefs,showmanualtags}%参照した数式だけに数式番号を付ける. 参照は \ref ではだめで \eqref を使う必要がある.
+
+% --------------------------------------------------------------------------
+%	environments
+% --------------------------------------------------------------------------
+
+\tcbuselibrary{xparse} %preamble
+\DeclareTColorBox{simplesquarebox}{ o m O{.5} O{} }% 
+{empty, left=2mm, right=2mm, top=-1mm, attach boxed title to top left={xshift=1.2\zw},
+	boxed title style={empty,left=-2mm,right=-2mm}, colframe=black, coltitle=black, coltext=black, breakable,  
+	underlay unbroken={\draw[black,line width=#3pt]
+		(title.east) -- (title.east-|frame.east) -- (frame.south east) -- (frame.south west) -- (title.west-|frame.west) -- (title.west); },
+	underlay first={\draw[black,line width=#3pt](title.east) -- (title.east-|frame.east) -- (frame.south east) ;
+		\draw[black,line width=#3pt] (frame.south west) -- (title.west-|frame.west) -- (title.west); },
+	underlay middle={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) ;
+		\draw[black,line width=#3pt](frame.south west) -- (frame.north west) ;},
+	underlay last={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) -- (frame.south west) -- (frame.north west) ;},
+	fonttitle=\gtfamily, IfValueTF={#1}{title=【#2】〈#1〉}{title=【#2】},#4}
+%simplesquarebox環境の定義. 囲み枠の環境が使える
+
+%% 定理環境
+%mytheoオプションの定義（定理環境のタネ）
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+\tcbset{mytheo/.style={fonttitle=\gtfamily\sffamily\bfseries\upshape,
+		enhanced,%%%tikzを用いた記法の処理
+		colframe=burgundy,%%%本文の枠の色
+		colback=burgundy!2!white,%%%本文の背景色
+		colbacktitle=burgundy,%%%タイトルの背景の色
+		boxrule=0pt,%%%枠線の太さ
+		borderline south={2pt}{-2pt}{burgundy},
+		left*=1\zw,right*=1\zw,%%%box内左右の余白
+		theorem style=standard,
+		breakable,%%%ページマタギOK
+		sharp corners,%%%左上の角の調整 
+		before skip=8pt,
+		after skip=10pt,
+		before upper={\setlength{\parindent}{1\zw}},
+		before lower={\setlength{\parindent}{1\zw}}
+}}
+%定理
+\newtcbtheorem[number within=section]{theorem}{定理}%
+{mytheo}{th}
+\newcommand{\thref}[1]{{\bfseries\sffamily 定理 \ref{th:#1}}}
+%命題
+\newtcbtheorem[use counter from=theorem]{proposition}{命題}%
+{mytheo}{pr}
+\newcommand{\prref}[1]{{\bfseries\sffamily 命題 \ref{pr:#1}}}
+%系
+\newtcbtheorem[use counter from=theorem]{corollary}{系}%
+{mytheo}{co}
+%予想
+\newtcbtheorem[use counter from=theorem]{conjecture}{予想}%
+{mytheo}{con}
+\newcommand{\conref}[1]{{\bfseries\sffamily 予想 \ref{con:#1}}}
+%質問
+\newtcbtheorem[use counter from=theorem]{question}{疑問}%
+{mytheo}{qu}
+\newcommand{\quref}[1]{{\bfseries\sffamily 質問 \ref{qu:#1}}}
+%定義-命題
+\newtcbtheorem[use counter from=theorem]{def-prop}{定義-命題}%
+{mytheo}{defpr}
+\newcommand{\defprref}[1]{{\bfseries\sffamily 定義-命題 \ref{defpr:#1}}}
+%定義
+\newtcbtheorem[use counter from=theorem]{definition}{定義}%
+{mytheo,
+	colframe=blue!30!black,%%%本文の枠の色
+	colback=blue!30!black!2!white,%%%本文の背景色
+	colbacktitle=blue!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{blue!30!black},
+}{de}
+\newcommand{\deref}[1]{{\bfseries\sffamily 定義 \ref{de:#1}}}
+%記号
+\newtcbtheorem{notation}{記号}%
+{mytheo,
+	theorem name,%定理番号を付けない
+	colframe=blue!30!black,%%%本文の枠の色
+	colback=blue!30!black!2!white,%%%本文の背景色
+	colbacktitle=blue!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{blue!30!black},
+}{no}
+%補題
+\newtcbtheorem[use counter from=theorem]{lemma}{補題}%
+{mytheo,
+	colframe=green!30!black,%%%本文の枠の色
+	colback=green!30!black!2!white,%%%本文の背景色
+	colbacktitle=green!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{green!30!black},
+}{le}
+\newcommand{\leref}[1]{{\bfseries\sffamily 補題 \ref{le:#1}}}
+%注意
+\newtcbtheorem[use counter from=theorem]{remark}{注意}%
+{mytheo,
+	colframe=green!30!black,%%%本文の枠の色
+	colback=green!30!black!2!white,%%%本文の背景色
+	colbacktitle=green!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{green!30!black},
+}{re}
+\newcommand{\reref}[1]{{\bfseries\sffamily 注意 \ref{re:#1}}}
+%主張
+\newtcbtheorem[use counter from=theorem]{claim}{主張}%
+{mytheo,
+	colframe=green!30!black,%%%本文の枠の色
+	colback=green!30!black!2!white,%%%本文の背景色
+	colbacktitle=green!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{green!30!black},
+}{cl}
+\newcommand{\clref}[1]{{\bfseries\sffamily 主張 \ref{cl:#1}}}
+%例
+\newtcbtheorem[use counter from=theorem]{example}{例}%
+{mytheo,
+	colframe=green!30!black,%%%本文の枠の色
+	colback=green!30!black!2!white,%%%本文の背景色
+	colbacktitle=green!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{green!30!black},
+}{ex}
+\newcommand{\exref}[1]{{\bfseries\sffamily 例 \ref{ex:#1}}}
+%観察
+\newtcbtheorem{observation}{観察}%
+{mytheo,
+	theorem name,%定理番号を付けない
+	colframe=green!30!black,%%%本文の枠の色
+	colback=green!30!black!2!white,%%%本文の背景色
+	colbacktitle=green!30!black,%%%タイトルの背景の色
+	borderline south={2pt}{-2pt}{green!30!black},
+}{ob}
+%%例
+%\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+%\newtcbtheorem[use counter from=theorem]{example}{例}%
+%{mytheo,
+%	colframe=charcoal,colback=charcoal!2!white,colbacktitle=charcoal,borderline south={2pt}{-2pt}{charcoal},}{ex}
+%\newcommand{\exref}[1]{{\bfseries\sffamily 例 \ref{ex:#1}}}
+
+%証明
+\renewcommand{\proofname}{\bf 証明}
+
+%箇条書き
+\makeatletter
+\renewcommand{\theenumi}{{\upshape (\@roman\c@enumi)}}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\p@enumii}{}
+\renewcommand{\theenumii}{{\upshape (\@alph\c@enumii)}}
+\renewcommand{\labelenumii}{\theenumii}
+\makeatother
+%
+%%セクションタイトルの枠
+%\usepackage{xpatch}
+%\xpatchcmd{\section}{\normalfont\Large\bfseries}{\sectionbox}{}{\PatchFailed}
+%\newcommand{\sectionbox}[1] {
+%	\begin{tcolorbox}
+%		[
+%		colframe=purple,%%%本文の枠の色
+%		colback=purple!100,%%%本文の背景色
+%		coltext=white, % text color
+%		width=\linewidth,%
+%		height=0.7cm, 
+%		halign=center,
+%		valign=center,
+%		fontupper=\large\bfseries,
+%		arc=0mm, auto outer arc,
+%		]
+%		{#1}
+%	\end{tcolorbox} 
+%} %
+
+% --------------------------------------------------------------------------
+%	commands and operators
+% --------------------------------------------------------------------------
+
+\newcommand{\iu}{\sqrt{-1}}%imaginary unitの頭文字
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbW}{\mathbb{W}}
+\newcommand{\bbone}{\mathbbm{1}}
+
+\newcommand{\e}{\mathfrak{e}}
+\newcommand{\frakp}{\mathfrak{p}}
+\newcommand{\frakq}{\mathfrak{q}}
+\newcommand{\frakH}{\mathfrak{H}}
+\newcommand{\frakO}{\mathfrak{O}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakQ}{\mathfrak{Q}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+
+\DeclareMathOperator{\ImNew}{Im}
+\DeclareMathOperator{\vol}{vol}
+\renewcommand{\Im}{\ImNew}
+\DeclareMathOperator{\ReNew}{Re}
+\renewcommand{\Re}{\ReNew}
+\DeclareMathOperator{\modNew}{mod}
+\renewcommand{\mod}{\modNew}
+
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Mp}{Mp}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Mat}{M}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\divisor}{div}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\val}{val}
+\DeclareMathOperator{\Lyn}{Lyn}
+\DeclareMathOperator{\circprod}{circ}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Per}{Per}
+
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}%括弧に合わせて大きくなる\mid. \relmiddle|のように使う
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\smat}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix}\bigr)}
+\newcommand{\sprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\ssprod}[1]{\langle#1\rangle}
+\newcommand{\msprod}[1]{\Big\langle#1\Big\rangle}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\sabs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\snorm}[1]{\lVert#1\rVert}
+\newcommand{\KS}[2]{\bigg(\frac{#1}{#2}\bigg)}
+\newcommand{\sKS}[2]{(\frac{#1}{#2})}
+\newcommand{\HypF}[2]{{}_{#1}F_{#2}}
+\newcommand{\weightkaction}[1]{\,\Big\vert_{#1}\,}
+\newcommand{\sweightkaction}[1]{\,\big\vert_{#1}\,}
+\newcommand{\st}{\ \Big\vert\ }
+\newcommand{\sst}{\ \big\vert\ }
+\newcommand{\restrict}[2]{\left. #1 \right|_{#2}}
+
+\newcommand{\thmref}[2]{\hyperref[#2]{#1 \ref*{#2}}}
+\renewcommand{\eqref}[1]{\hyperref[#1]{(\ref*{#1})}}
+
+% --------------------------------------------------------------------------
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\redout}[1]{\red{\xcancel{#1}}}
+
+% --------------------------------------------------------------------------
+
+%ハイパーリンク. 目次にもハイパーリンクが付く. プリアンブルのできるだけ後ろに書く. 
+\usepackage[luatex, pdfencoding=auto]{hyperref}
+%\usepackage{pxjahyper}%hyperref読み込みの直後に. upLaTeX環境下で日本語の文字化けを防ぐために使う
+\hypersetup{% hyperrefオプションリスト
+	colorlinks=false
+}
