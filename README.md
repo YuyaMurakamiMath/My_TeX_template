@@ -1,15 +1,15 @@
 ## 村上友哉の LaTeX テンプレート置き場
 
-ここは、私村上が私的に作成した LaTeX のテンプレートの保管庫です。
+ここは、村上が私的に作成した LaTeX のテンプレートの保管庫です。
 
-* [記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
-* [カラフルな記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%AB%E3%83%A9%E3%83%95%E3%83%AB%E3%81%AA%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
-* [論文テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E8%AB%96%E6%96%87%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [カラフルな記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E3%82%AB%E3%83%A9%E3%83%95%E3%83%AB%E3%81%AA%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [英語論文テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E8%AB%96%E6%96%87%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
 
 の3つのテンプレートを置いています。
 
 便利なコマンドを豊富に準備し、よく必要になるパッケージをまとめて導入しています。
-また、出来る限り整理してあるので、メンテナンスやカスタマイズもやりやすくなっています。
+出来る限り整理してあるので、メンテナンスやカスタマイズもやりやすくなっています。
 良ければ使ってみてください。
 
 ## このテンプレートで出来ること
@@ -32,22 +32,27 @@
 
 ## 注意点
 
-### sty ファイルの使いかた
+### 設定ファイルの説明
 
-以下の sty ファイルを利用できます。
+私のテンプレートファイルを使わずに、私が準備した各種コマンドや設定だけを利用することもできます。
+以下の設定ファイル（sty ファイル）を準備しています。
 
-* 
-* [mycommand.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/mycommand.sty): コマンドを楽に入力する
-* [mytheorem.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/mytheorem.sty): 日本語での定理環境
+* [mycommand.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/mycommand.sty): 豊富なコマンドを楽に入力する
+* [mytheorem.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/mytheorem.sty): 日本語での定理環境
+* [mytheoremcolor.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/mytheoremcolor.sty): カラフルな定理環境
+* [mytheoremeng.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/mytheoremeng.sty): 定理環境
+* [myprogram.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/myprogram.sty): プログラミング言語を記述する環境
 
-ここの sty ファイルを利用したいときや tex ファイルをコンパイルしたいときは、同梱されている sty ファイルに対し
-* テキストエディタで開き、内容をプリアンプルにコピペする
-* tex ファイルと同じフォルダに置く
-* （W32TeX の場合）「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置く。\share 以下のフォルダが存在しない場合は新しく作成する
 
-のいずれかを行ってください。
+これらの sty ファイルを利用するには次のようにします。
 
-自作 sty ファイルで読み込んでいる一部のパッケージ（bbm, bbold, listings, plistings）は、 TeX をインストールする際にデフォルトでインストールされていない可能性があるので、 その場合は別途インストールするか、これらパッケージを使わないようにコメントアウトしてください。
+1. これらの sty ファイルに対し次のいずれかを行ってください。
+  * tex ファイルと同じフォルダに置く（簡単な方法だが、フォルダを新しくするごとに一々置かなければならないため手間）
+  * （W32TeX の場合）「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置く。\share 以下のフォルダが存在しない場合は新しく作成する（確実な方法だが、少し難しい。Overleafを使う場合にはできない）
+  * テキストエディタで開き、内容をプリアンプルにコピペする（安直にできるが非推奨。メンテナンス性を損なうため）
+2. 自分が書いている tex ファイルのプリアンブルに `\usepackage{mycommand}` などのように記述してください。
+
+なお、自作 sty ファイルで読み込んでいる一部のパッケージ（bbm, bbold, listings, plistings）は、 TeX をインストールする際にデフォルトでインストールされていない可能性があるので、 その場合は別途インストールするか、これらパッケージを使わないようにコメントアウトしてください。
 これらのパッケージの sty ファイルの置き場所も「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」です。
 
 ### LuaLaTeXを使ってください
