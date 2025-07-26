@@ -1,15 +1,15 @@
 ## 村上友哉の LaTeX テンプレート置き場
 
-ここは、私村上が私的に作成した LaTeX のテンプレートの保管庫です。
+ここは、村上が私的に作成した LaTeX のテンプレートの保管庫です。
 
 * [記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
 * [カラフルな記事テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E3%82%AB%E3%83%A9%E3%83%95%E3%83%AB%E3%81%AA%E8%A8%98%E4%BA%8B%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
-* [論文テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E8%AB%96%E6%96%87%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
+* [英語論文テンプレート](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/%E8%AB%96%E6%96%87%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88.pdf)
 
 の3つのテンプレートを置いています。
 
 便利なコマンドを豊富に準備し、よく必要になるパッケージをまとめて導入しています。
-また、出来る限り整理してあるので、メンテナンスやカスタマイズもやりやすくなっています。
+出来る限り整理してあるので、メンテナンスやカスタマイズもやりやすくなっています。
 良ければ使ってみてください。
 
 ## このテンプレートで出来ること
