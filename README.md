@@ -48,7 +48,22 @@ upLaTeX + dvipdfmx でコンパイルできる tex ファイルの作成は、�
 私の意見としては、ぜひLuaLaTeXを使ってみてほしいと思っています。
 コンパイルが遅いという欠点はあるものの、日本語の文書をLaTeXで作成するのには upLaTeX + dvipdfmx よりも便利だと思います。
 具体的には、次のようなメリットがあります。
-* 
+* フォントの設定が容易
+* 日本語非対応の文書クラスにも日本語を使える
+  * 例えば英語論文を amsart という文書クラスで書くとき、 dvipdfmx の場合は日本語があるとコンパイルが通りません
+  * LuaLaTeXならそれができます
+  * 従って、英語論文を書くときに日本語でコメントを付けたり和文を英訳しながら書いたりできます
+  * これは大きいと思います！
+* dvipdfmx はハイパーリンク、 graphicx パッケージ、 color パッケージなどでエラーが出ることがある
+  * 対処のしようもあるが、無理に古いやり方を通すくらいなら LuaLaTeX という新しいやり方を使うのが良いと思います
+  * 参考：[LaTeX: graphicx と color の危険な関係](https://qiita.com/zr_tex8r/items/442b75b452b11bee8049)
+* dvipdfmx は arXiv 上でコンパイルが通らない！
+  * しかもエラーメッセージが分かりにくく、まさか dvipdfmx が悪さをしてるとはなかなか気付きにくいです。arXiv に論文投稿する際にこのトラップに引っかかった人はとても多いのではないでしょうか
+  * ちなみに pxjahyper パッケージのように「px~~」という名前のパッケージは arXiv 上でコンパイルが通らないようです。LuaLaTeXを使えばこれらのパッケージを使う必要はありません
+
+以下の記事も参考になります。
+* [LuaLaTeX のすゝめ](https://qiita.com/Daiji256/items/9afbfa9f822629d3b995)
+* [p/upLaTeX から LuaLaTeX へ移行すべき理由と方法](https://www.metaphysica.info/2022/outdated-uplatex/)
 
 なお、以下の sty ファイルは upLaTeX + dvipdfmx でも利用できます:
 * [mycommand.sty](https://github.com/YuyaMurakamiMath/My_TeX_template/blob/main/mycommand.sty): コマンドを楽に入力する
