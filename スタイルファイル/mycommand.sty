@@ -1,4 +1,21 @@
 % --------------------------------------------------------------------------
+%	オペレータ命令の再定義する \ReDeclareMathOperator を定義
+% --------------------------------------------------------------------------
+
+% オペレータ命令を再定義する \ReDeclareMathOperator というコマンドを新しく定義する
+% \renewcommand の\DeclareMathOperator 版
+
+\makeatletter
+\newcommand\ReDeclareMathOperator[2]{%
+	\begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+	\expandafter\@ifundefined\@gtempa
+	{\@latex@error{Command \string#1 undefined}\@ehc}%
+	\relax
+	\let\@ifdefinable\@rc@ifdefinable
+	\DeclareMathOperator#1{#2}}
+\makeatother
+
+% --------------------------------------------------------------------------
 %	ギリシャ文字の短縮コマンド
 % --------------------------------------------------------------------------
 
@@ -10,6 +27,10 @@
 %	書体
 % --------------------------------------------------------------------------
 
+\usepackage{bm}% 小文字の太文字斜体
+\usepackage{bbm} % 数字を白抜き文字にする
+
+% 黒板太字
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -41,6 +62,7 @@
 \newcommand{\bbY}{\mathbb{Y}}
 \newcommand{\bbZ}{\mathbb{Z}}
 
+% フラクトゥール
 \newcommand{\fraka}{\mathfrak{a}}
 \newcommand{\frakb}{\mathfrak{b}}
 \newcommand{\frakc}{\mathfrak{c}}
@@ -94,6 +116,7 @@
 \newcommand{\frakY}{\mathfrak{Y}}
 \newcommand{\frakZ}{\mathfrak{Z}}
 
+% 筆記体（カリグラフィー）
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calB}{\mathcal{B}}
 \newcommand{\calC}{\mathcal{C}}
@@ -121,6 +144,7 @@
 \newcommand{\calY}{\mathcal{Y}}
 \newcommand{\calZ}{\mathcal{Z}}
 
+% 花文字（スクリプト）
 \newcommand{\scrA}{\mathscr{A}}
 \newcommand{\scrB}{\mathscr{B}}
 \newcommand{\scrC}{\mathscr{C}}
@@ -149,79 +173,6 @@
 \newcommand{\scrZ}{\mathscr{Z}}
 
 % --------------------------------------------------------------------------
-%	指示関数
-% --------------------------------------------------------------------------
-
-\usepackage{bm}%小文字の太文字斜体
-\usepackage{bbm}%数字を白抜き文字にする
-
-\newcommand{\bbone}{\mathbbm{1}}
-
-% --------------------------------------------------------------------------
-%	複素数
-% --------------------------------------------------------------------------
-
-\newcommand{\iu}{\sqrt{-1}}%imaginary unitの頭文字
-
-\DeclareMathOperator{\ReNew}{Re}
-\renewcommand{\Re}{\ReNew} % 複素数の実部のコマンドをブロック体で再定義
-\DeclareMathOperator{\ImNew}{Im}
-\renewcommand{\Im}{\ImNew} % 複素数の虚部のコマンドをブロック体で再定義
-
-% --------------------------------------------------------------------------
-%	行列
-% --------------------------------------------------------------------------
-
-\DeclareMathOperator{\Mat}{M}
-\DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\PSL}{PSL}
-\DeclareMathOperator{\GL}{GL}
-\DeclareMathOperator{\Sp}{Sp}
-\DeclareMathOperator{\Mp}{Mp}
-\DeclareMathOperator{\SO}{SO}
-\DeclareMathOperator{\Sym}{Sym}
-\DeclareMathOperator{\Spin}{Spin}
-\DeclareMathOperator{\Gr}{Gr}
-
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\linspan}{span}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\Tr}{Tr}
-\DeclareMathOperator{\rk}{rk}
-\newcommand{\transpose}[1]{{}^t\!#1} %transpose of matrix
-
-% --------------------------------------------------------------------------
-%	集合・代数・複素解析など
-% --------------------------------------------------------------------------
-
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Map}{Map}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\res}{res} % 制限
-\DeclareMathOperator{\Frac}{Frac} % 商体
-\DeclareMathOperator{\disc}{disc} % 判別式
-\DeclareMathOperator*{\Res}{Res} % 留数
-\DeclareMathOperator{\vol}{vol} % 体積
-
-% --------------------------------------------------------------------------
-%	代数幾何
-% --------------------------------------------------------------------------
-
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\Supp}{Supp}
-
-\DeclareMathOperator{\Div}{Div}
-\DeclareMathOperator{\divisor}{div} % \divは÷
-\DeclareMathOperator{\Cl}{Cl}
-\DeclareMathOperator{\CH}{CH}
-\DeclareMathOperator{\Pic}{Pic}
-
-\DeclareMathOperator{\length}{length}
-\DeclareMathOperator{\ord}{ord}
-
-% --------------------------------------------------------------------------
 %	括弧類
 % --------------------------------------------------------------------------
 
@@ -234,7 +185,147 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % ノルム
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % 床関数
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil} % 天井関数
+
 \newcommand{\restrict}[2]{\left. #1 \right|_{#2}} % \restrict{f}{U}でfのUへの制限. \restrict{f}{k}[\gamma]とすればfへの\gammaの重さk作用
-\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}% \relmiddle{|}で括弧に合わせて大きくなる\mid
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}} % \relmiddle{|}で括弧に合わせて大きくなる\mid
+
+% --------------------------------------------------------------------------
+%	矢印
+% --------------------------------------------------------------------------
+
+\newcommand{\longhookrightarrow}{\begin{tikzcd}[cramped,sep=scriptsize,ampersand replacement=\&]{}\arrow[r, hook]\&{}\end{tikzcd}} % 長い単射
+\newcommand{\longtwoheadrightarrow}{\begin{tikzcd}[cramped,sep=scriptsize,ampersand replacement=\&]{}\arrow[r, two heads]\&{}\end{tikzcd}} % 長い全射
+\newcommand{\longrightsquigarrow}{\begin{tikzcd}[cramped,sep=scriptsize,ampersand replacement=\&]{}\arrow[r, squiggly]\&{}\end{tikzcd}} % 長いニョロニョロ矢印
+\newcommand{\longdashrightarrow}{\begin{tikzcd}[cramped,sep=scriptsize,ampersand replacement=\&]{}\arrow[r, dashed]\&{}\end{tikzcd}} % 長い点線矢印
+
+% --------------------------------------------------------------------------
+%	整数論
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\lcm}{lcm} % 最小公倍数
+
+% --------------------------------------------------------------------------
+%	複素数
+% --------------------------------------------------------------------------
+
+% 虚数単位
+% iu は imaginary unit の頭文字
+\newcommand{\iu}{\sqrt{-1}} % ルート-1と表示
+%\newcommand{\iu}{\mathrm{i}} % ローマン体のi
+
+\ReDeclareMathOperator{\Re}{Re} % 実部
+\ReDeclareMathOperator{\Im}{Im} % 虚部
+
+% --------------------------------------------------------------------------
+%	集合論
+% --------------------------------------------------------------------------
+
+\renewcommand{\complement}{\mathsf{c}} % 補集合
+
+% --------------------------------------------------------------------------
+%	解析学・特殊関数
+% --------------------------------------------------------------------------
+
+\newcommand{\eval}[1]{\left.#1\right|} % 関数への代入 定積分の計算で$ \eval{f(x)}_{x=0}^{1} $のように使う
+\newcommand{\hypgeo}[5]{{}_{#1}F_{#2}\left(\genfrac{}{}{0pt}{}{#3}{#4} ; #5 \right) } % 超幾何関数
+\DeclareMathOperator{\erf}{erf} % 誤差関数
+\DeclareMathOperator{\erfc}{erfc} % 相補誤差関数
+\DeclareMathOperator{\sgn}{sgn} % 符号
+
+% --------------------------------------------------------------------------
+%	複素解析
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator*{\Res}{Res} % 留数
+\DeclareMathOperator{\vp}{\mathrm{v.p.}} % Cauchyの主値
+\DeclareMathOperator{\PV}{PV} % Cauchyの主値
+
+% --------------------------------------------------------------------------
+%	線形代数
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\diag}{diag} % 対角行列
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\rk}{rk}
+\newcommand{\transpose}[1]{{}^t\!#1} % 行列の転置
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\Coim}{Coim}
+\DeclareMathOperator{\coim}{coim}
+
+% --------------------------------------------------------------------------
+%	Lie群
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Mat}{M}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Mp}{Mp}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Spin}{Spin}
+
+% --------------------------------------------------------------------------
+%	Lie代数
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\slfrak}{\mathfrak{sl}} % \slはサンセリフ体に用いられている
+\DeclareMathOperator{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\spfrak}{\mathfrak{sp}} % \spはスケールポイント（長さの単位）に用いられている
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\DeclareMathOperator{\spin}{\mathfrak{spin}}
+\newcommand{\su}{\mathfrak{su}}
+
+% --------------------------------------------------------------------------
+%	代数
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal} % Galois群
+\DeclareMathOperator{\Frac}{Frac} % 商体
+\DeclareMathOperator{\disc}{disc} % 判別式
+\DeclareMathOperator{\Stab}{Stab} % 固定部分群
+
+% --------------------------------------------------------------------------
+%	幾何
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\vol}{vol} % 体積
+\DeclareMathOperator{\lk}{lk} % 交叉形式
+
+\DeclareMathOperator{\Gr}{Gr} % Grassmann多様体
+
+% --------------------------------------------------------------------------
+%	代数幾何
+% --------------------------------------------------------------------------
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Supp}{Supp} % 台
+\DeclareMathOperator{\res}{res} % 層の制限射
+
+\DeclareMathOperator{\Div}{Div} % 因子群
+\DeclareMathOperator{\divisor}{div} % \divは÷
+\DeclareMathOperator{\Cl}{Cl} % 因子類群
+\DeclareMathOperator{\CH}{CH} % Chow群
+\DeclareMathOperator{\Pic}{Pic} % Picard群
+
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\ord}{ord}
+
+% --------------------------------------------------------------------------
+%	その他
+% --------------------------------------------------------------------------
+
+\newcommand{\phant}{\hphantom{{}={}}} % align環境で=を左揃えにするときに1行目の先頭を &\phant とすると=ぶんの空白が出力される
+\DeclareMathOperator{\ev}{ev} % 代入写像
 
 % --------------------------------------------------------------------------

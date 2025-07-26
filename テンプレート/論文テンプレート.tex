@@ -1,13 +1,18 @@
-\documentclass[11pt,a4paper,oneside,lualatex]{article}
+% --------------------------------------------------------------------------
+%		Document style
+% --------------------------------------------------------------------------
 
-\usepackage[marginparwidth=0pt,margin=25truemm]{geometry} % margin
+\documentclass[11pt,a4paper,lualatex]{amsart}
+%\documentclass[11pt,a4paper,oneside,lualatex]{ltjsarticle}
+%\usepackage{luatexja} %日本語非対応のドキュメントクラスでも日本語を表示してくれる. 日本語のコメントを入れるときだけコメントアウトを外し、最終原稿では日本語を無くしてこの行を再びコメントアウトする
+\usepackage[marginparwidth=0pt,margin=20truemm]{geometry} % margin
 
 % --------------------------------------------------------------------------
 %		Packages and commands
 % --------------------------------------------------------------------------
 
-\usepackage{mypackage} % My packages.
-\usepackage{mycommand} % My commands.
+\usepackage{mypackage} % My packages
+\usepackage{mycommand} % My commands
 
 % --------------------------------------------------------------------------
 %		Hyperlinks
@@ -28,11 +33,13 @@
 \begin{document}
 % --------------------------------------------------------------------------
 
-\title{My template for works}
-\author{Yuya Murakami
-\thanks{Mathematical Inst. Tohoku Univ., 6-3, Aoba, Aramaki, Aoba-Ku, Sendai 980-8578, JAPAN.
-	Aramaki-aza-Aoba 6-3, Aoba-ku, Sendai, 980-8578, Japan
-	\textit{E-mail address}: \texttt{yuya.murakami.s8@dc.tohoku.ac.jp}}}
+
+\title[Short title]{My template for works}
+\author[Y. Murakami]{Yuya Murakami}
+\address{Faculty of Mathematics, Kyushu University, 744, Motooka, Nishi-ku, Fukuoka, 819-0395, JAPAN}
+\email{murakami.yuya.896@m.kyushu-u.ac.jp}
+\thanks{The author is supported by...}
+
 \date{\today}
 
 \maketitle
@@ -85,7 +92,23 @@ By \cref{thm:main,thm:main2,thm:main3,lem:1,eq:1}, we have...
 \vspace{1em}
 
 This paper will be organized as follows. 
-In \cref{sec:2}, we define...
+In \cref{sec:preliminaries}, we prepare...
+In \cref{sec:3}, we define...
+
+% --------------------------------------------------------------------------
+
+\subsection*{Notations}
+
+% --------------------------------------------------------------------------
+
+Throughout this article, we use the following notations:
+
+\begin{itemize}
+	\item For a complex number $ z $, we denote $ \bm{e}(z) \coloneqq e^{2\pi\iu z} $.
+	\item We denote $ q $ a complex variable with $ \abs{q} < 1 $.
+	\item etc...
+\end{itemize}
+
 
 % --------------------------------------------------------------------------
 
@@ -96,7 +119,53 @@ In \cref{sec:2}, we define...
 
 % --------------------------------------------------------------------------
 
-\section{} \label{sec:2}
+\section{Preliminaries} \label{sec:preliminaries}
+
+% --------------------------------------------------------------------------
+
+Write fundamental results.
+
+% --------------------------------------------------------------------------
+
+\section{} \label{sec:3}
+
+% --------------------------------------------------------------------------
+
+
+
+% --------------------------------------------------------------------------
+
+\subsection{} \label{subsec:}
+
+% --------------------------------------------------------------------------
+
+
+
+% --------------------------------------------------------------------------
+
+\section{} \label{sec:}
+
+% --------------------------------------------------------------------------
+
+
+% --------------------------------------------------------------------------
+
+\subsection{} \label{subsec:}
+
+% --------------------------------------------------------------------------
+
+
+
+% --------------------------------------------------------------------------
+
+\section{} \label{sec:}
+
+% --------------------------------------------------------------------------
+
+
+% --------------------------------------------------------------------------
+
+\subsection{} \label{subsec:}
 
 % --------------------------------------------------------------------------
 

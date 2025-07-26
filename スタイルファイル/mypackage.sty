@@ -7,6 +7,10 @@
 \usepackage{enumerate} % 箇条書き
 \usepackage{enumitem} %箇条書きのenumerate環境をパワーアップ
 
+\usepackage{mleftright} % \left(や\right)で書いた括弧の前の空白を減らす
+\renewcommand{\left}{\mleft}
+\renewcommand{\right}{\mright} 
+
 %\mathtoolsset{showonlyrefs,showmanualtags} % 参照した数式だけに数式番号を付ける. 参照は\refではだめで\eqrefを使う必要がある. cleverefパッケージとは両立しない. 
 
 % --------------------------------------------------------------------------
@@ -23,7 +27,10 @@
 % --------------------------------------------------------------------------
 
 \usepackage{tikz}
-\usetikzlibrary{cd}% 可換図式
+\usetikzlibrary{cd} % 可換図式
+\usetikzlibrary{positioning} % グラフ
+\usetikzlibrary{decorations.pathmorphing} % 色々な矢印を描く
+
 \usepackage{array, booktabs} % 表
 \usepackage{colortbl} % 表の色付け
 \usepackage{tabularx} % 表のセル内改行
@@ -34,6 +41,7 @@
 %		箇条書きの番号の設定
 % --------------------------------------------------------------------------
 
+% enumerate環境のラベルを変更
 \makeatletter
 \renewcommand{\theenumi}{{\upshape (\@roman\c@enumi)}}
 \renewcommand{\labelenumi}{\theenumi}
@@ -41,3 +49,5 @@
 \renewcommand{\theenumii}{{\upshape (\@alph\c@enumii)}}
 \renewcommand{\labelenumii}{\theenumii}
 \makeatother
+
+\renewcommand{\labelitemii}{$ \triangleright $} % itemize環境で2層のラベルを右三角にする
