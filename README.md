@@ -73,6 +73,9 @@ upLaTeX + dvipdfmx でコンパイルできる tex ファイルの作成は、�
 * dvipdfmx は arXiv 上でコンパイルが通らない！
   * しかもエラーメッセージが分かりにくく、まさか dvipdfmx が悪さをしてるとはなかなか気付きにくいことが多いです。arXiv に論文投稿する際にこのトラップに引っかかった人はとても多いのではないでしょうか
   * ちなみに pxjahyper パッケージのように「px~~」という名前のパッケージは arXiv 上でコンパイルが通らないようです。LuaLaTeXを使えばこれらのパッケージを使う必要はありません
+* pLaTeX / upLaTeX は将来的に動かなくなるかもしれない
+  * 参考：[
+pLaTeX が本格的にやばいかもという話](https://acetaminophen.hatenablog.com/entry/2021/06/18/022108)
 
 LuaLaTeXのメリットについては以下の記事も参考になります。
 * [LuaLaTeX のすゝめ](https://qiita.com/Daiji256/items/9afbfa9f822629d3b995)
