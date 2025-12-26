@@ -1,0 +1,162 @@
+\documentclass[12pt,a4paper,twoside,titlepage,lualatex]{ltjsreport}
+
+%SumatraPDFの逆順検索でエラーが出た時は以下のコマンドラインをSumatraPDFの設定→オプションで入力する
+%"C:\Program Files (x86)\TeXstudio\texstudio.exe" "%f" -line %l
+
+\usepackage{luatexja} % ltjclasses, ltjsclasses を使うときはこの行不要
+\usepackage[marginparwidth=0pt,margin=25truemm]{geometry} % 余白の設定
+% スマホやタブレットでも読みやすいB5サイズの文書を書くときは, 1行目の\documentclassのオプションで「a4paper」を「b5paper」にして, 余白設定はmargin=10truemmにすると自分好み
+
+%\renewcommand{\bibname}{参考文献}
+%\renewcommand{\proofname}{\bf 証明}
+%\renewcommand{\labelenumi}{{\rm(\arabic{enumi})}}
+
+% --------------------------------------------------------------------------
+%		パッケージとコマンド
+% --------------------------------------------------------------------------
+
+\usepackage{mypackage} % よく使うパッケージ. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmypackage.styを読み込む
+\usepackage{mycommand} % 自分で定義したコマンド. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmycommand.styを読み込む
+
+% --------------------------------------------------------------------------
+%		ハイパーリンク
+% --------------------------------------------------------------------------
+
+%目次にもハイパーリンクが付く. プリアンブルのできるだけ後ろに書く. 
+\usepackage[luatex, pdfencoding=auto,hypertexnames=false]{hyperref}
+% ハイパーリンクの色
+%\hypersetup{% hyperrefオプションリスト
+%	colorlinks=true,
+%	linkcolor=DarkGoldenrod, % リンクの色
+%	citecolor=SlateBlue, % 引用文献の色
+%	urlcolor=violet, % URLの色
+%}
+\hypersetup{colorlinks=false} % ハイパーリンクの色付けを無効化
+
+% --------------------------------------------------------------------------
+%		定理環境と相互参照
+% --------------------------------------------------------------------------
+
+% 参照番号の設定
+\numberwithin{equation}{chapter} % 式番号を「(1.1)」のように出力
+\newtheorem{theoremcounter}{}[chapter] % 定理番号のオプションを選択. [section]を[chapter]にすれば章番号から始まり「定理 1.1.1」のようになる.
+\newtheorem{exercisecounter}{}[] % 演習問題番号のオプションを選択. []を[section], [chapter]にすればそれぞれ節, 章番号から始まり「演習問題 1.1」「演習問題 1.1.1」のようになる. [theoremcounter]にすれば定理番号と共通の番号.
+
+% 自作スタイルファイル読み込み
+\usepackage{mytheorem} % cleverefパッケージによる定理環境と相互参照. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmytheorem.styを読み込む. \usepackage{hyperref}の後に書く. 
+
+\usepackage{myprogram} % ハイライト付きソースコード. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmyprogram.styを読み込む
+
+% --------------------------------------------------------------------------
+\begin{document}
+% --------------------------------------------------------------------------
+
+\title{
+{\Large 東北大学大学院理学研究科 数学専攻 \\[1cm]
+博士前期課程 修士論文} \\[3cm]
+\huge ここに修論タイトルを書く \\[5cm]
+}
+\author{B8SM1031 村上友哉}
+\date{\Large 2020年 1月 } 
+\maketitle
+\thispagestyle{empty}
+\clearpage
+
+%シンプルな目次
+\tableofcontents
+\thispagestyle{empty} % 目次はページ番号なし
+\newpage % 目次だけで1ページ使う
+\setcounter{page}{1} % 本文を1ページ目から始める
+\renewcommand{\thepage}{\arabic{page}} % ページ番号をアラビア数字に指定
+
+% --------------------------------------------------------------------------
+
+\chapter{序論} \label{chap:intro}
+
+% --------------------------------------------------------------------------
+
+本論文では～～について考察する...
+
+動機は...
+
+本論文で解決したい問題は...
+
+先行研究で行われていることを紹介する...
+
+しかし～～の場合には十分な進展が得られていない.
+これは～～という困難があるためである...
+
+本論文の主定理は...
+
+\begin{thm}
+	主定理を書く
+\end{thm}
+
+この結果を得る上で, 上述した困難を～～によって乗り越えた...
+
+今後の課題を挙げる... 
+
+本論文の構成を述べる.
+\cref{chap:prelim}では...
+
+
+\newpage
+
+% --------------------------------------------------------------------------
+
+\section*{謝辞} \label{sec:acknowledgement}
+
+% --------------------------------------------------------------------------
+
+
+\newpage
+
+% --------------------------------------------------------------------------
+
+\section*{記号} \label{sec:notation}
+
+% --------------------------------------------------------------------------
+
+本論文を通して用いる記号を以下に述べる.
+
+\begin{itemize}
+	\item 本論文では, 環といえば単位元を持つ可換環とする. 
+	\item $ \bbH \coloneq \{ \tau = x+y\sqrt{-1} \mid x, y \in \R, y>0 \} $を複素上半平面とする. 
+\end{itemize}
+
+% --------------------------------------------------------------------------
+
+\chapter{準備} \label{chap:prelim}
+
+% --------------------------------------------------------------------------
+
+本章では基礎事項の準備を行う. 
+
+% --------------------------------------------------------------------------
+
+\section{二次形式} \label{sec:quad_form}
+
+% --------------------------------------------------------------------------
+
+この節では二次形式の基礎事項を述べる... 
+
+\begin{lem}\label{lem:quadsubsp}
+	$ R $を環, $ L $を有限生成自由$ R $加群, $ Q \colon L \to R $を二次形式, 
+	$ M \subset L $を部分自由$R$加群であって$ \rank_R L = \rank_RM $なるものとすると, 
+	$ \det M = d^2 \cdot \det L $を満たす$ d \in R $が存在する. 
+\end{lem}
+
+\begin{proof}
+	$ L, M $の基底に関する$ Q $の行列表示を取ればよい. 
+\end{proof}
+
+\cref{lem:quadsubsp}より...
+
+% --------------------------------------------------------------------------$
+
+\bibliographystyle{plain}
+\bibliography{myrefs}
+
+% --------------------------------------------------------------------------
+\end{document}
+% --------------------------------------------------------------------------
