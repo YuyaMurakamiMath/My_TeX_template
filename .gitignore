@@ -1,4 +1,3 @@
-*.synctex.gz
 *.aux
 *.bbl
 *.blg
@@ -8,6 +7,8 @@
 *.fls
 *.log
 *.out
+*.synctex
+*.synctex.gz
+*_temp.tex
 *.toc
 *.xcp
-*_temp.tex
