@@ -11,7 +11,7 @@
 % --------------------------------------------------------------------------
 %		パッケージとコマンド
 % --------------------------------------------------------------------------
-
+\usepackage{aliascnt}
 \usepackage{mypackage} % よく使うパッケージ. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmypackage.styを読み込む
 \usepackage{mycommand} % 自分で定義したコマンド. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmycommand.styを読み込む
 
@@ -42,296 +42,296 @@
 % 自作スタイルファイル読み込み
 \usepackage{mytheorem} % cleverefパッケージによる定理環境と相互参照. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmytheorem.styを読み込む. \usepackage{hyperref}の後に書く. 
 
-\usepackage{myprogram} % ハイライト付きソースコード. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmyprogram.styを読み込む
+%\usepackage{myprogram} % ハイライト付きソースコード. 「C:\w32tex\share\texmf-local\tex\(好きなファイル名)」に置いたmyprogram.styを読み込む
 
 % --------------------------------------------------------------------------
 \begin{document}
-% --------------------------------------------------------------------------
-
-\title{記事テンプレート}
-\author{村上友哉}
-\date{\today}
-
-\maketitle
-
-%シンプルな目次
-\tableofcontents
-
-% --------------------------------------------------------------------------
-
-\section{独自定義のコマンド} \label{sec:command}
-
-% --------------------------------------------------------------------------
-
-$ \N, \frakp, \calA, \Hom(A, B), \abs{x} $などのコマンドを楽に入力できる.
-定義したコマンド一覧は\mbox{mycommand.sty}で見られる.
-\cref{sec:eq}も参照のこと. 
-
-% --------------------------------------------------------------------------
-
-\section{独自定義の環境} \label{sec:environment}
-
-% --------------------------------------------------------------------------
-
-% --------------------------------------------------------------------------
-
-\subsection{定理環境} \label{subsec:thm}
-
-% --------------------------------------------------------------------------
-
-通常の定理環境はthm環境を使って
-\begin{thm}[見出し] \label{thm:1}
-	定理の内容
-\end{thm}
-として「\cref{thm:1}」のように引用する.
-番号にはハイパーリンクが付く.
-
-他にもprop環境で命題, dfn環境で定義などを出力できる.
-他のコマンドはmytheorem.styを参照のこと.
-
-\begin{exc}
-	演習問題だけは番号付けがデフォルトで定理番号とは別の通し番号になっている.
-	変更したいときはプリアンブルから設定する.
-\end{exc}
-
-
-% --------------------------------------------------------------------------
-
-\subsection{相互参照} \label{subsec:ref}
-
-% --------------------------------------------------------------------------
-
-相互参照はcleverefパッケージが便利である. 
-例えば以下のように記述できる.
-
-\begin{thm} \label{thm:2}
-	hogehoge
-\end{thm}
-
-\begin{thm} \label{thm:3}
-	hogehoge
-\end{thm}
-
-\begin{lem} \label{lem:1}
-	hogehoge
-\end{lem}
-
-\begin{equation} \label{eq:1}
-	abc
-\end{equation}
-
-\begin{equation} \label{eq:2}
-	abc
-\end{equation}
-
-\cref{thm:1}より... 
-
-\cref{thm:1,thm:2,thm:3,lem:1,eq:2,sec:environment,subsec:thm,subsec:ref,subsec:program}から...
-
-equation*などの*付き数式環境は使えないので注意.
-crefで複数のラベルを参照する時は「,」の後にスペースを空けないように注意.
-例えば\verb*|\cref{thm:1, thm:2}|としてしまうと\verb|thm:1|と\verb*| thm:2|が参照されることになってしまう. 
-
-% --------------------------------------------------------------------------
-
-\subsection{プログラムのソースコードを表示} \label{subsec:program}
-
-% --------------------------------------------------------------------------
-
-\begin{Python}
-Copy and paste source code of Python or Sage.
-\end{Python}
-\begin{result}
-Copy and paste result.
-\end{result}
-のように使う.
-
-
-% --------------------------------------------------------------------------
-
-\section{数式用コマンド} \label{sec:eq}
-
-% --------------------------------------------------------------------------
-
-% --------------------------------------------------------------------------
-
-\subsection{様々な記号} \label{subsec:symbols}
-
-% --------------------------------------------------------------------------
-
-\begin{itemize}
-	\item 黒板太字$ \bbA, \bbB $などは\verb|\bbA|, \verb|\bbB|などと書く. 
-	なお$ \N, \Z, \Q, \R $に限っては\verb|\N|, \verb|\Z|, \verb|\Q|, \verb|\R|と書ける. 
-	複素数$ \bbC $は\verb|\C|とは書けないことに注意（LuaLaTeXでこのコマンドを準備すると何故かエラーが出るため）. 
+	% --------------------------------------------------------------------------
 	
-	\item フラクトゥール$ \frakA, \frakB, \fraka, \frakb $などは\verb|\frakA|, \verb|\frakB|, \verb|\fraka|, \verb|\frakb|などと書く. これは小文字も対応している. 
+	\title{記事テンプレート}
+	\author{村上友哉}
+	\date{\today}
 	
-	\item 筆記体（カリグラフィー）$ \calA, \calB $などは\verb|\calA|, \verb|\calB|などと書く. 
+	\maketitle
 	
-	\item 花文字（スクリプト）$ \scrA, \scrB $などは\verb|\scrA|, \verb|\scrB|などと書く. 
+	%シンプルな目次
+	\tableofcontents
 	
-	\item $ \GL_2(\R), \Hom(V, W), \Gal(L/K) $などは\verb|\GL_2(\R)|, \verb|\Hom(V, W)|, \verb|\Gal(L/K)|などと書く. 
+	% --------------------------------------------------------------------------
 	
-	\item 行列
-	\[
-	\pmat{a & b \\ c & d}
-	\]
-	は\verb|\pmat{a & b \\ c & d}|と書く. 
-	他のコマンドはmycommand.styの「括弧類」を参照のこと. 
+	\section{独自定義のコマンド} \label{sec:command}
 	
-	\item 絶対値$ \abs{x} $は\verb|\abs{x}|と書く. 
+	% --------------------------------------------------------------------------
 	
-	\item 内積$ \sprod{v, w} $は\verb|\sprod{v, w}|と書く. 
+	$ \N, \frakp, \calA, \Hom(A, B), \abs{x} $などのコマンドを楽に入力できる.
+	定義したコマンド一覧は\mbox{mycommand.sty}で見られる.
+	\cref{sec:eq}も参照のこと. 
 	
-	\item 留数
-	\[
-	\Res_{z=0} f(z)
-	\]
-	は\verb|\Res_{z=0} f(z)|と書く. 
+	% --------------------------------------------------------------------------
 	
-	\item 定積分の計算で現れる$ \eval{f(x)}_{x=0}^{1} $は\verb|\eval{f(x)}_{x=0}^{1}|と書く. 
+	\section{独自定義の環境} \label{sec:environment}
 	
-	\item 長い単射$ \longhookrightarrow $, 長い全射$ \longtwoheadrightarrow $, 長いニョロニョロ矢印$ \longrightsquigarrow $, 長い点線矢印$ \longdashrightarrow $はそれぞれ\verb|\longhookrightarrow|, \verb|\longtwoheadrightarrow|, \verb|\longrightsquigarrow|, \verb|\longdashrightarrow|と書く.
-\end{itemize}
-
-
-他のコマンドはmycommand.styを参照のこと. 
-
-
-% --------------------------------------------------------------------------
-
-\subsection{虚数単位} \label{subsec:imaginary_unit}
-
-% --------------------------------------------------------------------------
-
-虚数単位は\verb|\iu|（imaginary unitの略）というコマンドで$ \sqrt{-1} $と出力するように設定している（私の好み）. 
-これを変更したければ, mycommand.styの「複素数」欄にある該当箇所を書き換える（他の候補として$ \mathrm{i} $をコメントアウトしてすぐ下に記述してある）か, プリアンブルに
-\begin{quote}
-	\verb|\renewcommand{\iu}{変更先}|
-\end{quote}
-と書けば良い. 
-「変更先」のところには例えば\verb|\mathrm{i}|と書けば良い. 
-
-もし論文投稿などの際に自分が使っているスタイルとは異なる書き方を要求された場合は, プリアンブルで対処するのが手軽で良い. 
-
-
-% --------------------------------------------------------------------------
-
-\subsection{数式の途中改行} \label{subsec:eq_phantom}
-
-% --------------------------------------------------------------------------
-
-数式を途中改行する際にはphantomパッケージが便利. 
-特に$ = $で式を改行する場合のために\verb|\phant|というコマンドを準備してある. 
-使いかたは, 例えば
-\begin{quote}
-	\begin{verbatim}
-		\begin{align}
-		    &\phant AAAAAAAAAAAAAAA
-		    \\
-		    &= BBBBBBBBBBBBBB
-		\end{align}
-	\end{verbatim}
-\end{quote}
-と書くと
-\begin{align}
-	&\phant AAAAAAAAAAAAAAA
-	\\
-	&= BBBBBBBBBBBBBB
-\end{align}
-と出力される. 
-
-% --------------------------------------------------------------------------
-
-\subsection{可換図式} \label{subsec:comm_diag}
-
-% --------------------------------------------------------------------------
-
-可換図式はTikZ-cdを使って
-\begin{equation}
-	\begin{tikzcd}
-		A \ar[r, "f"] \arrow[d, "g"'] & B \ar[d] \\
-		C \ar[r] & D
-	\end{tikzcd}
-	\begin{tikzcd}
-		& x \arrow[ld] \arrow[d, dotted] \arrow[rd] & \\
-		a & a\times b \arrow[l] \arrow[r] & b
-	\end{tikzcd}
-	\begin{tikzcd}
-		x \arrow[ddr, bend right] \arrow[rrd, bend left] \arrow[rd, dotted] & & \\
-		& a \arrow[r] \arrow[d] & b \arrow[d] \\
-		& c \arrow[r] & d
-	\end{tikzcd}
-\end{equation}
-
-のように書く（\href{https://blog.miz-ar.info/2017/06/commutative-diagrams-in-latex/}{参考にしたURL}）.
-
-%図を挿入するときは
-%\begin{figure}[hbtp]
-%	\centering
-%	\includegraphics[clip,width = 10.0cm]{図のファイル名}
-%	\caption{注釈}
-%	\label{fig:label_name}
-%\end{figure}
-%
-%左右に二つの図を挿入するときは
-%\begin{figure}[hbtp]
-%	\centering
-%	\begin{subfigure}{0.4\columnwidth}
-	%		\centering
-	%		\includegraphics[clip,width = \columnwidth]{図1のファイル名}
-	%		\caption{注釈}
-	%		\label{fig:label_name1}
-	%	\end{subfigure}
-%	\begin{subfigure}{0.4\columnwidth}
-	%		\centering
-	%		\includegraphics[clip,width = \columnwidth]{図2のファイル名}
-	%		\caption{注釈}
-	%		\label{fig:label_name2}
-	%	\end{subfigure}	
-%\end{figure}
-
-% --------------------------------------------------------------------------
-
-\section{文献引用} \label{sec:bib}
-
-% --------------------------------------------------------------------------
-
-文献の内容をbibtex形式でMathSciNetなどからコピペしたbibファイルを準備して, \cite[定理 1.1]{AM}などとして文献を引用する.（この際, citeコマンドの前に空白を空ける場合は半角スペースではなくチルダを使うことで行頭への出力を禁止する）.
-本稿で用いているbiblatexよりも拡張性が高いbiblatexパッケージというのもあるが, 相互参照のためのcleverefパッケージで数式を参照するために利用しているautonumパッケージで読み込まれるetextoolsパッケージと互換性が無いため導入を断念した. 
-
-% --------------------------------------------------------------------------
-
-\section{各種設定} \label{sec:setting}
-
-% --------------------------------------------------------------------------
-
-\begin{itemize}
-	\item ハイパーリンクの色はプリアンブルの「ハイパーリンク」の項目から変更できる.
-	\item 定理番号の付け方はプリアンブルの「定理環境と相互参照」の項目から変更できる.
-	\item 余白はプリアンブル先頭でgeometryパッケージを読み込んでいる箇所から変更できる.
-	\item enumerate環境による箇条書きのラベル付けはmypackage.styの最後で設定を変更できる. 
-\end{itemize}
-
-
-% --------------------------------------------------------------------------
-
-\section*{謝辞}
-
-% --------------------------------------------------------------------------
-
-mycommand.styで定義しているコマンドの一部は松坂俊輝さんに教えて頂いたものを使っています.
-また, このテンプレートはインターネット上に公開されている膨大な知見をもとに作成されています.
-ここに感謝いたします.
-
-% --------------------------------------------------------------------------
-%		参考文献
-% --------------------------------------------------------------------------
-
-\bibliographystyle{alpha}
-\bibliography{myrefs} % myrefs.bibに書いた文献データを引用
-% 日本語の書籍タイトルがゴシック体になる. 見苦しいようなら\emphコマンドを書き換える. 
-
-% --------------------------------------------------------------------------
+	% --------------------------------------------------------------------------
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{定理環境} \label{subsec:thm}
+	
+	% --------------------------------------------------------------------------
+	
+	通常の定理環境はthm環境を使って
+	\begin{thm}[見出し] \label{thm:1}
+		定理の内容
+	\end{thm}
+	として「\cref{thm:1}」のように引用する.
+	番号にはハイパーリンクが付く.
+	
+	他にもprop環境で命題, dfn環境で定義などを出力できる.
+	他のコマンドはmytheorem.styを参照のこと.
+	
+	\begin{exc}
+		演習問題だけは番号付けがデフォルトで定理番号とは別の通し番号になっている.
+		変更したいときはプリアンブルから設定する.
+	\end{exc}
+	
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{相互参照} \label{subsec:ref}
+	
+	% --------------------------------------------------------------------------
+	
+	相互参照はcleverefパッケージが便利である. 
+	例えば以下のように記述できる.
+	
+	\begin{thm} \label{thm:2}
+		hogehoge
+	\end{thm}
+	
+	\begin{thm} \label{thm:3}
+		hogehoge
+	\end{thm}
+	
+	\begin{lem} \label{lem:1}
+		hogehoge
+	\end{lem}
+	
+	\begin{equation} \label{eq:1}
+		abc
+	\end{equation}
+	
+	\begin{equation} \label{eq:2}
+		abc
+	\end{equation}
+	
+	\cref{thm:1}より... 
+	
+	\cref{thm:1,thm:2,thm:3,lem:1,eq:2,sec:environment,subsec:thm,subsec:ref,subsec:program}から...
+	
+	equation*などの*付き数式環境は使えないので注意.
+	crefで複数のラベルを参照する時は「,」の後にスペースを空けないように注意.
+	例えば\verb*|\cref{thm:1, thm:2}|としてしまうと\verb|thm:1|と\verb*| thm:2|が参照されることになってしまう. 
+	
+	% --------------------------------------------------------------------------
+	
+	%\subsection{プログラムのソースコードを表示} \label{subsec:program}
+	
+	% --------------------------------------------------------------------------
+	
+	%\begin{Python}
+	%Copy and paste source code of Python or Sage.
+	%\end{Python}
+	%\begin{result}
+	%Copy and paste result.
+	%\end{result}
+	%のように使う.
+	
+	
+	% --------------------------------------------------------------------------
+	
+	\section{数式用コマンド} \label{sec:eq}
+	
+	% --------------------------------------------------------------------------
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{様々な記号} \label{subsec:symbols}
+	
+	% --------------------------------------------------------------------------
+	
+	\begin{itemize}
+		\item 黒板太字$ \bbA, \bbB $などは\verb|\bbA|, \verb|\bbB|などと書く. 
+		なお$ \N, \Z, \Q, \R $に限っては\verb|\N|, \verb|\Z|, \verb|\Q|, \verb|\R|と書ける. 
+		複素数$ \bbC $は\verb|\C|とは書けないことに注意（LuaLaTeXでこのコマンドを準備すると何故かエラーが出るため）. 
+		
+		\item フラクトゥール$ \frakA, \frakB, \fraka, \frakb $などは\verb|\frakA|, \verb|\frakB|, \verb|\fraka|, \verb|\frakb|などと書く. これは小文字も対応している. 
+		
+		\item 筆記体（カリグラフィー）$ \calA, \calB $などは\verb|\calA|, \verb|\calB|などと書く. 
+		
+		\item 花文字（スクリプト）$ \scrA, \scrB $などは\verb|\scrA|, \verb|\scrB|などと書く. 
+		
+		\item $ \GL_2(\R), \Hom(V, W), \Gal(L/K) $などは\verb|\GL_2(\R)|, \verb|\Hom(V, W)|, \verb|\Gal(L/K)|などと書く. 
+		
+		\item 行列
+		\[
+		\pmat{a & b \\ c & d}
+		\]
+		は\verb|\pmat{a & b \\ c & d}|と書く. 
+		他のコマンドはmycommand.styの「括弧類」を参照のこと. 
+		
+		\item 絶対値$ \abs{x} $は\verb|\abs{x}|と書く. 
+		
+		\item 内積$ \sprod{v, w} $は\verb|\sprod{v, w}|と書く. 
+		
+		\item 留数
+		\[
+		\Res_{z=0} f(z)
+		\]
+		は\verb|\Res_{z=0} f(z)|と書く. 
+		
+		\item 定積分の計算で現れる$ \eval{f(x)}_{x=0}^{1} $は\verb|\eval{f(x)}_{x=0}^{1}|と書く. 
+		
+		\item 長い単射$ \longhookrightarrow $, 長い全射$ \longtwoheadrightarrow $, 長いニョロニョロ矢印$ \longrightsquigarrow $, 長い点線矢印$ \longdashrightarrow $はそれぞれ\verb|\longhookrightarrow|, \verb|\longtwoheadrightarrow|, \verb|\longrightsquigarrow|, \verb|\longdashrightarrow|と書く.
+	\end{itemize}
+	
+	
+	他のコマンドはmycommand.styを参照のこと. 
+	
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{虚数単位} \label{subsec:imaginary_unit}
+	
+	% --------------------------------------------------------------------------
+	
+	虚数単位は\verb|\iu|（imaginary unitの略）というコマンドで$ \sqrt{-1} $と出力するように設定している（私の好み）. 
+	これを変更したければ, mycommand.styの「複素数」欄にある該当箇所を書き換える（他の候補として$ \mathrm{i} $をコメントアウトしてすぐ下に記述してある）か, プリアンブルに
+	\begin{quote}
+		\verb|\renewcommand{\iu}{変更先}|
+	\end{quote}
+	と書けば良い. 
+	「変更先」のところには例えば\verb|\mathrm{i}|と書けば良い. 
+	
+	もし論文投稿などの際に自分が使っているスタイルとは異なる書き方を要求された場合は, プリアンブルで対処するのが手軽で良い. 
+	
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{数式の途中改行} \label{subsec:eq_phantom}
+	
+	% --------------------------------------------------------------------------
+	
+	数式を途中改行する際にはphantomパッケージが便利. 
+	特に$ = $で式を改行する場合のために\verb|\phant|というコマンドを準備してある. 
+	使いかたは, 例えば
+	\begin{quote}
+		\begin{verbatim}
+			\begin{align}
+				&\phant AAAAAAAAAAAAAAA
+				\\
+				&= BBBBBBBBBBBBBB
+			\end{align}
+		\end{verbatim}
+	\end{quote}
+	と書くと
+	\begin{align}
+		&\phant AAAAAAAAAAAAAAA
+		\\
+		&= BBBBBBBBBBBBBB
+	\end{align}
+	と出力される. 
+	
+	% --------------------------------------------------------------------------
+	
+	\subsection{可換図式} \label{subsec:comm_diag}
+	
+	% --------------------------------------------------------------------------
+	
+	可換図式はTikZ-cdを使って
+	\begin{equation}
+		\begin{tikzcd}
+			A \ar[r, "f"] \arrow[d, "g"'] & B \ar[d] \\
+			C \ar[r] & D
+		\end{tikzcd}
+		\begin{tikzcd}
+			& x \arrow[ld] \arrow[d, dotted] \arrow[rd] & \\
+			a & a\times b \arrow[l] \arrow[r] & b
+		\end{tikzcd}
+		\begin{tikzcd}
+			x \arrow[ddr, bend right] \arrow[rrd, bend left] \arrow[rd, dotted] & & \\
+			& a \arrow[r] \arrow[d] & b \arrow[d] \\
+			& c \arrow[r] & d
+		\end{tikzcd}
+	\end{equation}
+	
+	のように書く（\href{https://blog.miz-ar.info/2017/06/commutative-diagrams-in-latex/}{参考にしたURL}）.
+	
+	%図を挿入するときは
+	%\begin{figure}[hbtp]
+	%	\centering
+	%	\includegraphics[clip,width = 10.0cm]{図のファイル名}
+	%	\caption{注釈}
+	%	\label{fig:label_name}
+	%\end{figure}
+	%
+	%左右に二つの図を挿入するときは
+	%\begin{figure}[hbtp]
+	%	\centering
+	%	\begin{subfigure}{0.4\columnwidth}
+		%		\centering
+		%		\includegraphics[clip,width = \columnwidth]{図1のファイル名}
+		%		\caption{注釈}
+		%		\label{fig:label_name1}
+		%	\end{subfigure}
+	%	\begin{subfigure}{0.4\columnwidth}
+		%		\centering
+		%		\includegraphics[clip,width = \columnwidth]{図2のファイル名}
+		%		\caption{注釈}
+		%		\label{fig:label_name2}
+		%	\end{subfigure}	
+	%\end{figure}
+	
+	% --------------------------------------------------------------------------
+	
+	\section{文献引用} \label{sec:bib}
+	
+	% --------------------------------------------------------------------------
+	
+	文献の内容をbibtex形式でMathSciNetなどからコピペしたbibファイルを準備して, \cite[定理 1.1]{AM}などとして文献を引用する.（この際, citeコマンドの前に空白を空ける場合は半角スペースではなくチルダを使うことで行頭への出力を禁止する）.
+	本稿で用いているbiblatexよりも拡張性が高いbiblatexパッケージというのもあるが, 相互参照のためのcleverefパッケージで数式を参照するために利用しているautonumパッケージで読み込まれるetextoolsパッケージと互換性が無いため導入を断念した. 
+	
+	% --------------------------------------------------------------------------
+	
+	\section{各種設定} \label{sec:setting}
+	
+	% --------------------------------------------------------------------------
+	
+	\begin{itemize}
+		\item ハイパーリンクの色はプリアンブルの「ハイパーリンク」の項目から変更できる.
+		\item 定理番号の付け方はプリアンブルの「定理環境と相互参照」の項目から変更できる.
+		\item 余白はプリアンブル先頭でgeometryパッケージを読み込んでいる箇所から変更できる.
+		\item enumerate環境による箇条書きのラベル付けはmypackage.styの最後で設定を変更できる. 
+	\end{itemize}
+	
+	
+	% --------------------------------------------------------------------------
+	
+	\section*{謝辞}
+	
+	% --------------------------------------------------------------------------
+	
+	mycommand.styで定義しているコマンドの一部は松坂俊輝さんに教えて頂いたものを使っています.
+	また, このテンプレートはインターネット上に公開されている膨大な知見をもとに作成されています.
+	ここに感謝いたします.
+	
+	% --------------------------------------------------------------------------
+	%		参考文献
+	% --------------------------------------------------------------------------
+	
+	\bibliographystyle{alpha}
+	\bibliography{myrefs} % myrefs.bibに書いた文献データを引用
+	% 日本語の書籍タイトルがゴシック体になる. 見苦しいようなら\emphコマンドを書き換える. 
+	
+	% --------------------------------------------------------------------------
 \end{document}
-% --------------------------------------------------------------------------
+% -------------------------------------------------------------------------
