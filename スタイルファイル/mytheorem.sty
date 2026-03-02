@@ -3,7 +3,6 @@
 % --------------------------------------------------------------------------
 
 \usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
-
 % 参照した数式だけに番号を振るautonumパッケージ. *付き数式環境は使えない. 
 \let\etoolboxforlistloop\forlistloop % save the good meaning of \forlistloop
 \usepackage{autonum} 
@@ -61,46 +60,70 @@
 
 \theoremstyle{definition} %Theorem 環境の見出しを太字、本文に斜体を使わない
 
-\newtheorem{dfn}[theoremcounter]{定義}
-\crefname{dfn}{定義}{定義} % dfn環境参照時の表記を設定
+\newaliascnt{thm}{theoremcounter}
+\newtheorem{thm}[thm]{定理}
+\aliascntresetthe{thm}
 
-\newtheorem{thm}[theoremcounter]{定理}
+\newaliascnt{lem}{theoremcounter}
+\newtheorem{lem}[lem]{補題}
+\aliascntresetthe{lem}
+
 \crefname{thm}{定理}{定理}
-
-\newtheorem{lem}[theoremcounter]{補題}
 \crefname{lem}{補題}{補題}
 
+\newaliascnt{prop}{theoremcounter}
 \newtheorem{prop}[theoremcounter]{命題}
+\aliascntresetthe{prop}
 \crefname{prop}{命題}{命題}
 
+\newaliascnt{cor}{theoremcounter}
 \newtheorem{cor}[theoremcounter]{系}
+\aliascntresetthe{cor}
 \crefname{cor}{系}{系}
 
+\newaliascnt{rem}{theoremcounter}
 \newtheorem{rem}[theoremcounter]{注意}
+\aliascntresetthe{rem}
 \crefname{rem}{注意}{注意}
 
+\newaliascnt{ex}{theoremcounter}
 \newtheorem{ex}[theoremcounter]{例}
+\aliascntresetthe{ex}
 \crefname{ex}{例}{例}
 
+\newaliascnt{conj}{theoremcounter}
 \newtheorem{conj}[theoremcounter]{予想}
+\aliascntresetthe{conj}
 \crefname{conj}{予想}{予想}
 
+\newaliascnt{que}{theoremcounter}
 \newtheorem{que}[theoremcounter]{疑問}
+\aliascntresetthe{que}
 \crefname{que}{疑問}{疑問}
 
+\newaliascnt{prob}{theoremcounter}
 \newtheorem{prob}[theoremcounter]{問題}
+\aliascntresetthe{prob}
 \crefname{prob}{問題}{問題}
 
+\newaliascnt{clm}{theoremcounter}
 \newtheorem{clm}[theoremcounter]{主張}
+\aliascntresetthe{clm}
 \crefname{clm}{主張}{主張}
 
+\newaliascnt{assump}{theoremcounter}
 \newtheorem{assump}[theoremcounter]{仮定}
+\aliascntresetthe{assump}
 \crefname{assump}{仮定}{仮定}
 
+\newaliascnt{obs}{theoremcounter}
 \newtheorem{obs}[theoremcounter]{観察}
+\aliascntresetthe{obs}
 \crefname{obs}{観察}{観察}
 
+\newaliascnt{notn}{theoremcounter}
 \newtheorem{notn}[theoremcounter]{記法}
+\aliascntresetthe{notn}
 \crefname{notn}{記法}{記法}
 
 \newtheorem*{notn*}{記法}
