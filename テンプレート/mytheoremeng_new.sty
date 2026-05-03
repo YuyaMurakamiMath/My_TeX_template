@@ -1,0 +1,127 @@
+% --------------------------------------------------------------------------
+%		Packages
+% --------------------------------------------------------------------------
+
+\usepackage{zref-clever}
+
+\zcsetup{
+	noabbrev,
+	nameinlink,
+	cap,
+	rangesep = {--},
+}
+
+
+% --------------------------------------------------------------------------
+%		Equations
+% --------------------------------------------------------------------------
+
+% 参照した数式だけ番号を振る
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+% 数式参照時の表記を設定
+\zcRefTypeSetup{equation}{
+	Name-sg=, name-sg=,
+	Name-pl=, name-pl=,
+	Name-sg-ab=, name-sg-ab=,
+	Name-pl-ab=, name-pl-ab=,
+}
+
+% --------------------------------------------------------------------------
+%		Theorem-like environments
+% --------------------------------------------------------------------------
+
+% 斜体の環境
+\theoremstyle{plain}
+% zref-clever に「theoremcounter のときは thm として扱う」をデフォルト指定
+\zcsetup{countertype={theoremcounter=thm}}
+
+% thm環境参照時の表記を設定
+\newtheorem{thm}[theoremcounter]{Theorem}
+\zcRefTypeSetup{thm}{Name-sg=Theorem, name-sg=theorem, Name-pl=Theorems, name-pl=theorems}
+
+\newtheorem{lem}[theoremcounter]{Lemma}
+\zcRefTypeSetup{lem}{Name-sg=Lemma, name-sg=lemma, Name-pl=Lemmas, name-pl=lemmas}
+\AddToHook{env/lem/begin}{\zcsetup{countertype={theoremcounter=lem}}}
+
+\newtheorem{prop}[theoremcounter]{Proposition}
+\zcRefTypeSetup{prop}{Name-sg=Proposition, name-sg=proposition, Name-pl=Propositions, name-pl=propositions}
+\AddToHook{env/prop/begin}{\zcsetup{countertype={theoremcounter=prop}}}
+
+\newtheorem{cor}[theoremcounter]{Corollary}
+\zcRefTypeSetup{cor}{Name-sg=Corollary, name-sg=corollary, Name-pl=Corollaries, name-pl=corollaries}
+\AddToHook{env/cor/begin}{\zcsetup{countertype={theoremcounter=cor}}}
+
+\newtheorem{conj}[theoremcounter]{Conjecture}
+\zcRefTypeSetup{conj}{Name-sg=Conjecture, name-sg=conjecture, Name-pl=Conjectures, name-pl=conjectures}
+\AddToHook{env/conj/begin}{\zcsetup{countertype={theoremcounter=conj}}}
+
+\newtheorem{que}[theoremcounter]{Question}
+\zcRefTypeSetup{que}{Name-sg=Question, name-sg=question, Name-pl=Questions, name-pl=questions}
+\AddToHook{env/que/begin}{\zcsetup{countertype={theoremcounter=que}}}
+
+% 立体の環境
+\theoremstyle{definition}
+
+\newtheorem{dfn}[theoremcounter]{Definition}
+\zcRefTypeSetup{dfn}{Name-sg=Definition, name-sg=definition, Name-pl=Definitions, name-pl=definitions}
+\AddToHook{env/dfn/begin}{\zcsetup{countertype={theoremcounter=dfn}}}
+
+\newtheorem{rem}[theoremcounter]{Remark}
+\zcRefTypeSetup{rem}{Name-sg=Remark, name-sg=remark, Name-pl=Remarks, name-pl=remarks}
+\AddToHook{env/rem/begin}{\zcsetup{countertype={theoremcounter=rem}}}
+
+\newtheorem{ex}[theoremcounter]{Example}
+\zcRefTypeSetup{ex}{Name-sg=Example, name-sg=example, Name-pl=Examples, name-pl=examples}
+\AddToHook{env/ex/begin}{\zcsetup{countertype={theoremcounter=ex}}}
+
+\newtheorem{notn}[theoremcounter]{Notation}
+\zcRefTypeSetup{notn}{Name-sg=Notation, name-sg=notation, Name-pl=Notation, name-pl=notation}
+\AddToHook{env/notn/begin}{\zcsetup{countertype={theoremcounter=notn}}}
+
+\newtheorem*{notn*}{Notation}
+
+\newtheorem*{symb}{Symbol}
+
+\newtheorem{obs}[theoremcounter]{Observation}
+\zcRefTypeSetup{obs}{Name-sg=Observation, name-sg=observation, Name-pl=Observation, name-pl=observation}
+\AddToHook{env/obs/begin}{\zcsetup{countertype={theoremcounter=obs}}}
+
+\newtheorem*{obs*}{Observation}
+
+\newtheorem{prob}[theoremcounter]{Problem}
+\zcRefTypeSetup{prob}{Name-sg=Problem, name-sg=problem, Name-pl=Problem, name-pl=problem}
+\AddToHook{env/prob/begin}{\zcsetup{countertype={theoremcounter=prob}}}
+\newtheorem{clm}[theoremcounter]{Claim}
+\zcRefTypeSetup{clm}{Name-sg=Claim, name-sg=claim, Name-pl=Claim, name-pl=claim}
+\AddToHook{env/clm/begin}{\zcsetup{countertype={theoremcounter=clm}}}
+
+\newtheorem{assump}[theoremcounter]{Assumption}
+\zcRefTypeSetup{assump}{Name-sg=Assumption, name-sg=assumption, Name-pl=Assumption, name-pl=assumption}
+\AddToHook{env/assump/begin}{\zcsetup{countertype={theoremcounter=assump}}}
+
+% --------------------------------------------------------------------------
+%		Figures & tables
+% --------------------------------------------------------------------------
+
+\zcRefTypeSetup{figure}{Name-sg=Figure, name-sg=figure, Name-pl=Figures, name-pl=figures}
+\zcRefTypeSetup{table}{Name-sg=Table,  name-sg=table,  Name-pl=Tables,  name-pl=tables}
+
+
+% --------------------------------------------------------------------------
+%		Sections
+% --------------------------------------------------------------------------
+
+\zcRefTypeSetup{section}{Name-sg=Section, name-sg=section, Name-pl=Sections, name-pl=sections}
+\zcRefTypeSetup{subsection}{Name-sg=Subsection, name-sg=subsection, Name-pl=Subsections, name-pl=subsections}
+
+%\cref{item:hogehoge}で参照
+% 参照名は消した
+%\zcRefTypeSetup{item}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumi}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumii}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumiii}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumiv}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+
+% --------------------------------------------------------------------------

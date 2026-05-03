@@ -5,6 +5,9 @@
 \documentclass[11pt,a4paper,reqno,lualatex]{amsart} % reqnoは数式番号を右側表示(amsartのデフォルトは左)
 %\documentclass[11pt,a4paper,oneside,lualatex]{ltjsarticle}
 %\usepackage{luatexja} %日本語非対応のドキュメントクラスでも日本語を表示してくれる. 日本語のコメントを入れるときだけコメントアウトを外し、最終原稿では日本語を無くしてこの行を再びコメントアウトする
+% SumatraPDFの逆順検索でエラーが出た時は以下のコマンドラインをSumatraPDFの設定→オプションで入力する
+% "C:\Program Files\texstudio\texstudio.exe" "%f" -line %l
+
 \usepackage[marginparwidth=0pt,margin=20truemm]{geometry} % margin
 %\setcounter{tocdepth}{1} % 目次に出すのは\sectionまで
 
@@ -86,15 +89,22 @@
 	abc
 \end{equation}
 
-\cref{thm:main} asserts that...
+By \zcref{thm:main,thm:main2,thm:main3,lem:1,eq:1} , we have...
 
-By \cref{thm:main,thm:main2,thm:main3,lem:1,eq:1}, we have...
+\begin{lem} \label{lem:2}
+	\begin{enumerate}
+		\item \label{item:lem:2:hoge} hogehoge
+		\item \label{item:lem:2:huga} hugahuga
+	\end{enumerate}
+\end{lem}
+
+By \zcref{lem:2} \zcref{item:lem:2:hoge,item:lem:2:huga}, we have...
 
 \vspace{1em}
 
 This paper will be organized as follows. 
-In \cref{sec:preliminaries}, we prepare...
-In \cref{sec:3}, we define...
+In \zcref{sec:preliminaries}, we prepare...
+In \zcref{sec:3}, we define...
 
 % --------------------------------------------------------------------------
 
