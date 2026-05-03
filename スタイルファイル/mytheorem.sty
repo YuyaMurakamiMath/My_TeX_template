@@ -1,59 +1,105 @@
 % --------------------------------------------------------------------------
-%		cleverefパッケージ
+%		zref-cleverパッケージ
 % --------------------------------------------------------------------------
 
-\usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
+\usepackage{zref-clever}
 
-% 参照した数式だけに番号を振るautonumパッケージ. *付き数式環境は使えない. 
-\let\etoolboxforlistloop\forlistloop % save the good meaning of \forlistloop
-\usepackage{autonum} 
-\let\forlistloop\etoolboxforlistloop % restore the good meaning of \forlistloop
-
-\newcommand{\crefrangeconjunction}{--} % 3 つ以上連番で参照するときの表記を設定
-\newcommand{\crefrangepreconjunction}{}
-\newcommand{\crefrangepostconjunction}{}
-\newcommand{\crefpairconjunction}{, }
-\newcommand{\crefmiddleconjunction}{, }
-\newcommand{\creflastconjunction}{, }
-\newcommand{\crefpairgroupconjunction}{, }
-\newcommand{\crefmiddlegroupconjunction}{, }
-\newcommand{\creflastgroupconjunction}{, }
+\zcsetup{
+	noabbrev,
+	nameinlink,
+	cap,
+	namesep = {\nobreak},
+	pairsep = {, }, 
+	tpairsep = {, },
+	rangesep = {--},
+	refbounds = {(,)} % ← (1) にしたい
+}
 
 % --------------------------------------------------------------------------
 %		数式
 % --------------------------------------------------------------------------
 
-\crefname{equation}{式}{式}                % 数式参照時の表記を設定
+% 参照した数式だけ番号を振る
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+% 数式参照時の表記を設定
+\zcRefTypeSetup{equation}{
+	Name-sg=, name-sg=,
+	Name-pl=, name-pl=,
+	Name-sg-ab=, name-sg-ab=,
+	Name-pl-ab=, name-pl-ab=,
+}
+
 
 % --------------------------------------------------------------------------
 %		図表
 % --------------------------------------------------------------------------
 
-\crefname{figure}{図}{図}
-\crefname{subfigure}{図}{図}
-\crefname{table}{表}{表}
-\crefname{subtable}{表}{表}
+\zcRefTypeSetup{figure}{
+	Name-sg = 図, name-sg = 図,
+	Name-pl = 図, name-pl = 図,
+}
+\zcRefTypeSetup{subfigure}{
+	Name-sg = 図, name-sg = 図,
+	Name-pl = 図, name-pl = 図,
+}
+\zcRefTypeSetup{table}{
+	Name-sg = 表, name-sg = 表,
+	Name-pl = 表, name-pl = 表,
+}
+\zcRefTypeSetup{subtable}{
+	Name-sg = 表, name-sg = 表,
+	Name-pl = 表, name-pl = 表,
+}
 
 % --------------------------------------------------------------------------
 %		節番号など
 % --------------------------------------------------------------------------
 
-\crefname{part}{}{}
-\creflabelformat{part}{#2#1部#3}
-\crefname{chapter}{}{}
-\creflabelformat{chapter}{#2#1章#3}
-\crefname{section}{}{}
-\creflabelformat{section}{#2#1節#3}
-\crefname{subsection}{}{}
-\creflabelformat{subsection}{#2#1項#3}
+\zcRefTypeSetup{part}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+	refbounds = {,,部,}
+}
+\zcRefTypeSetup{chapter}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+	refbounds = {,,章,}
+}
+\zcRefTypeSetup{section}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+	refbounds = {,,節,}
+}
+\zcRefTypeSetup{subsection}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+	refbounds = {,,項,}
+}
 
-\crefname{appendix}{補遺}{補遺}
+\zcRefTypeSetup{appendix}{
+	Name-sg = 補遺, name-sg = 補遺,
+	Name-pl = 補遺, name-pl = 補遺,
+}
 
-%\cref{item:hogehoge}で参照
-\crefname{enumi}{}{}
-\crefname{enumii}{}{}
-\crefname{enumiii}{}{}
-\crefname{enumiiii}{}{}
+% enumerate の item 参照. \zcref{item:...} で名前なしにする
+\zcRefTypeSetup{enumi}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+}
+\zcRefTypeSetup{enumii}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+}
+\zcRefTypeSetup{enumiii}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+}
+\zcRefTypeSetup{enumiiii}{
+	Name-sg = , name-sg = ,
+	Name-pl = , name-pl = ,
+}
 
 % --------------------------------------------------------------------------
 %		定理環境
@@ -62,57 +108,81 @@
 \theoremstyle{definition} %Theorem 環境の見出しを太字、本文に斜体を使わない
 
 \newtheorem{dfn}[theoremcounter]{定義}
-\crefname{dfn}{定義}{定義} % dfn環境参照時の表記を設定
-
 \newtheorem{thm}[theoremcounter]{定理}
-\crefname{thm}{定理}{定理}
-
 \newtheorem{lem}[theoremcounter]{補題}
-\crefname{lem}{補題}{補題}
-
 \newtheorem{prop}[theoremcounter]{命題}
-\crefname{prop}{命題}{命題}
-
 \newtheorem{cor}[theoremcounter]{系}
-\crefname{cor}{系}{系}
-
 \newtheorem{rem}[theoremcounter]{注意}
-\crefname{rem}{注意}{注意}
-
 \newtheorem{ex}[theoremcounter]{例}
-\crefname{ex}{例}{例}
-
 \newtheorem{conj}[theoremcounter]{予想}
-\crefname{conj}{予想}{予想}
-
 \newtheorem{que}[theoremcounter]{疑問}
-\crefname{que}{疑問}{疑問}
-
 \newtheorem{prob}[theoremcounter]{問題}
-\crefname{prob}{問題}{問題}
-
 \newtheorem{clm}[theoremcounter]{主張}
-\crefname{clm}{主張}{主張}
-
 \newtheorem{assump}[theoremcounter]{仮定}
-\crefname{assump}{仮定}{仮定}
-
 \newtheorem{obs}[theoremcounter]{観察}
-\crefname{obs}{観察}{観察}
-
 \newtheorem{notn}[theoremcounter]{記法}
-\crefname{notn}{記法}{記法}
 
 \newtheorem*{notn*}{記法}
-
 \newtheorem*{symb}{記号}
-
 \newtheorem*{obs*}{観察}
 
-\newtheorem{exc}[exercisecounter]{演習問題}
-\crefname{exc}{演習問題}{演習問題}
+\newtheorem{exc}[exercisecounter]{問題}
+\newtheorem*{exc*}{問題}
 
-\newtheorem*{exc*}{演習問題}
+% --- 各 theorem env に対応する参照タイプ名を定義（\zcRefTypeSetup）
+% （同一カウンタ共有でも env ごとに呼び分けるため、type名は env名で切る） :contentReference[oaicite:10]{index=10}
+\zcRefTypeSetup{dfn}{ Name-sg=定義, name-sg=定義, Name-pl=定義, name-pl=定義 }
+\zcRefTypeSetup{thm}{ Name-sg=定理, name-sg=定理, Name-pl=定理, name-pl=定理 }
+\zcRefTypeSetup{lem}{ Name-sg=補題, name-sg=補題, Name-pl=補題, name-pl=補題 }
+\zcRefTypeSetup{prop}{ Name-sg=命題, name-sg=命題, Name-pl=命題, name-pl=命題 }
+\zcRefTypeSetup{cor}{ Name-sg=系,   name-sg=系,   Name-pl=系,   name-pl=系 }
+\zcRefTypeSetup{rem}{ Name-sg=注意, name-sg=注意, Name-pl=注意, name-pl=注意 }
+\zcRefTypeSetup{ex}{  Name-sg=例,   name-sg=例,   Name-pl=例,   name-pl=例 }
+\zcRefTypeSetup{conj}{Name-sg=予想, name-sg=予想, Name-pl=予想, name-pl=予想 }
+\zcRefTypeSetup{que}{ Name-sg=疑問, name-sg=疑問, Name-pl=疑問, name-pl=疑問 }
+\zcRefTypeSetup{prob}{Name-sg=問題, name-sg=問題, Name-pl=問題, name-pl=問題 }
+\zcRefTypeSetup{clm}{ Name-sg=主張, name-sg=主張, Name-pl=主張, name-pl=主張 }
+\zcRefTypeSetup{assump}{Name-sg=仮定, name-sg=仮定, Name-pl=仮定, name-pl=仮定 }
+\zcRefTypeSetup{obs}{ Name-sg=観察, name-sg=観察, Name-pl=観察, name-pl=観察 }
+\zcRefTypeSetup{notn}{Name-sg=記法, name-sg=記法, Name-pl=記法, name-pl=記法 }
+\zcRefTypeSetup{exc}{ Name-sg=問題, name-sg=問題, Name-pl=問題, name-pl=問題 }
+
+% --- ここが肝：theoremcounter共有でも、labelのreftypeを環境ごとに切り替える
+% \zcsetup はローカルなので、環境を group で包むのが安全 :contentReference[oaicite:11]{index=11}
+\usepackage{etoolbox}
+\newcommand*\ZC@theorem@reftype[1]{\begingroup\zcsetup{reftype=#1}}
+\newcommand*\ZC@theorem@endreftype{\endgroup}
+
+\AtBeginEnvironment{dfn}{\ZC@theorem@reftype{dfn}}
+\AtEndEnvironment  {dfn}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{thm}{\ZC@theorem@reftype{thm}}
+\AtEndEnvironment  {thm}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{lem}{\ZC@theorem@reftype{lem}}
+\AtEndEnvironment  {lem}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{prop}{\ZC@theorem@reftype{prop}}
+\AtEndEnvironment  {prop}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{cor}{\ZC@theorem@reftype{cor}}
+\AtEndEnvironment  {cor}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{rem}{\ZC@theorem@reftype{rem}}
+\AtEndEnvironment  {rem}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{ex}{\ZC@theorem@reftype{ex}}
+\AtEndEnvironment  {ex}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{conj}{\ZC@theorem@reftype{conj}}
+\AtEndEnvironment  {conj}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{que}{\ZC@theorem@reftype{que}}
+\AtEndEnvironment  {que}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{prob}{\ZC@theorem@reftype{prob}}
+\AtEndEnvironment  {prob}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{clm}{\ZC@theorem@reftype{clm}}
+\AtEndEnvironment  {clm}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{assump}{\ZC@theorem@reftype{assump}}
+\AtEndEnvironment  {assump}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{obs}{\ZC@theorem@reftype{obs}}
+\AtEndEnvironment  {obs}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{notn}{\ZC@theorem@reftype{notn}}
+\AtEndEnvironment  {notn}{\ZC@theorem@endreftype}
+\AtBeginEnvironment{exc}{\ZC@theorem@reftype{exc}}
+\AtEndEnvironment  {exc}{\ZC@theorem@endreftype}
 
 % --------------------------------------------------------------------------
 %	証明

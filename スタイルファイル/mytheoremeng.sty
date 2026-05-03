@@ -2,16 +2,31 @@
 %		Packages
 % --------------------------------------------------------------------------
 
-\usepackage[noabbrev,nameinlink,capitalize]{cleveref} % amsmath → hyperref → cleveref → autonum の順で読み込む
-\usepackage{autonum}% 参照した数式だけに番号を振る. *付き数式環境は使えない
+\usepackage{zref-clever}
 
-\newcommand{\crefrangeconjunction}{--} % 3 つ以上連番で参照するときの表記を設定
+\zcsetup{
+	noabbrev,
+	nameinlink,
+	cap,
+	rangesep = {--},
+}
+
 
 % --------------------------------------------------------------------------
 %		Equations
 % --------------------------------------------------------------------------
 
-\crefname{equation}{}{} % 数式参照時の表記を設定
+% 参照した数式だけ番号を振る
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+% 数式参照時の表記を設定
+\zcRefTypeSetup{equation}{
+	Name-sg=, name-sg=,
+	Name-pl=, name-pl=,
+	Name-sg-ab=, name-sg-ab=,
+	Name-pl-ab=, name-pl-ab=,
+}
 
 % --------------------------------------------------------------------------
 %		Theorem-like environments
@@ -19,75 +34,94 @@
 
 % 斜体の環境
 \theoremstyle{plain}
+% zref-clever に「theoremcounter のときは thm として扱う」をデフォルト指定
+\zcsetup{countertype={theoremcounter=thm}}
 
+% thm環境参照時の表記を設定
 \newtheorem{thm}[theoremcounter]{Theorem}
-\crefname{thm}{Theorem}{Theorems} % thm環境参照時の表記を設定
+\zcRefTypeSetup{thm}{Name-sg=Theorem, name-sg=theorem, Name-pl=Theorems, name-pl=theorems}
 
 \newtheorem{lem}[theoremcounter]{Lemma}
-\crefname{lem}{Lemma}{Lemmas}
+\zcRefTypeSetup{lem}{Name-sg=Lemma, name-sg=lemma, Name-pl=Lemmas, name-pl=lemmas}
+\AddToHook{env/lem/begin}{\zcsetup{countertype={theoremcounter=lem}}}
 
 \newtheorem{prop}[theoremcounter]{Proposition}
-\crefname{prop}{Proposition}{Propositions}
+\zcRefTypeSetup{prop}{Name-sg=Proposition, name-sg=proposition, Name-pl=Propositions, name-pl=propositions}
+\AddToHook{env/prop/begin}{\zcsetup{countertype={theoremcounter=prop}}}
 
 \newtheorem{cor}[theoremcounter]{Corollary}
-\crefname{cor}{Corollary}{Corollaries}
+\zcRefTypeSetup{cor}{Name-sg=Corollary, name-sg=corollary, Name-pl=Corollaries, name-pl=corollaries}
+\AddToHook{env/cor/begin}{\zcsetup{countertype={theoremcounter=cor}}}
 
 \newtheorem{conj}[theoremcounter]{Conjecture}
-\crefname{conj}{Conjecture}{Conjectures}
+\zcRefTypeSetup{conj}{Name-sg=Conjecture, name-sg=conjecture, Name-pl=Conjectures, name-pl=conjectures}
+\AddToHook{env/conj/begin}{\zcsetup{countertype={theoremcounter=conj}}}
 
 \newtheorem{que}[theoremcounter]{Question}
-\crefname{que}{Question}{Questions}
+\zcRefTypeSetup{que}{Name-sg=Question, name-sg=question, Name-pl=Questions, name-pl=questions}
+\AddToHook{env/que/begin}{\zcsetup{countertype={theoremcounter=que}}}
 
 % 立体の環境
 \theoremstyle{definition}
 
 \newtheorem{dfn}[theoremcounter]{Definition}
-\crefname{dfn}{Definition}{Definitions} % dfn環境参照時の表記を設定
+\zcRefTypeSetup{dfn}{Name-sg=Definition, name-sg=definition, Name-pl=Definitions, name-pl=definitions}
+\AddToHook{env/dfn/begin}{\zcsetup{countertype={theoremcounter=dfn}}}
 
 \newtheorem{rem}[theoremcounter]{Remark}
-\crefname{rem}{Remark}{Remarks}
+\zcRefTypeSetup{rem}{Name-sg=Remark, name-sg=remark, Name-pl=Remarks, name-pl=remarks}
+\AddToHook{env/rem/begin}{\zcsetup{countertype={theoremcounter=rem}}}
 
 \newtheorem{ex}[theoremcounter]{Example}
-\crefname{ex}{Example}{Examples}
+\zcRefTypeSetup{ex}{Name-sg=Example, name-sg=example, Name-pl=Examples, name-pl=examples}
+\AddToHook{env/ex/begin}{\zcsetup{countertype={theoremcounter=ex}}}
 
 \newtheorem{notn}[theoremcounter]{Notation}
-\crefname{notn}{Notation}{Notation}
+\zcRefTypeSetup{notn}{Name-sg=Notation, name-sg=notation, Name-pl=Notation, name-pl=notation}
+\AddToHook{env/notn/begin}{\zcsetup{countertype={theoremcounter=notn}}}
+
 \newtheorem*{notn*}{Notation}
 
 \newtheorem*{symb}{Symbol}
 
 \newtheorem{obs}[theoremcounter]{Observation}
-\crefname{obs}{Observation}{Observation}
+\zcRefTypeSetup{obs}{Name-sg=Observation, name-sg=observation, Name-pl=Observation, name-pl=observation}
+\AddToHook{env/obs/begin}{\zcsetup{countertype={theoremcounter=obs}}}
+
 \newtheorem*{obs*}{Observation}
 
 \newtheorem{prob}[theoremcounter]{Problem}
-\crefname{prob}{Problem}{Problem}
-
+\zcRefTypeSetup{prob}{Name-sg=Problem, name-sg=problem, Name-pl=Problem, name-pl=problem}
+\AddToHook{env/prob/begin}{\zcsetup{countertype={theoremcounter=prob}}}
 \newtheorem{clm}[theoremcounter]{Claim}
-\crefname{clm}{Claim}{Claim}
+\zcRefTypeSetup{clm}{Name-sg=Claim, name-sg=claim, Name-pl=Claim, name-pl=claim}
+\AddToHook{env/clm/begin}{\zcsetup{countertype={theoremcounter=clm}}}
 
 \newtheorem{assump}[theoremcounter]{Assumption}
-\crefname{assump}{Assumption}{Assumption}
+\zcRefTypeSetup{assump}{Name-sg=Assumption, name-sg=assumption, Name-pl=Assumption, name-pl=assumption}
+\AddToHook{env/assump/begin}{\zcsetup{countertype={theoremcounter=assump}}}
 
 % --------------------------------------------------------------------------
-%		Figures & diagrams
+%		Figures & tables
 % --------------------------------------------------------------------------
 
-\crefname{fig}{Figure}{Figures}
-\crefname{tab}{Table}{Tables}
+\zcRefTypeSetup{figure}{Name-sg=Figure, name-sg=figure, Name-pl=Figures, name-pl=figures}
+\zcRefTypeSetup{table}{Name-sg=Table,  name-sg=table,  Name-pl=Tables,  name-pl=tables}
+
 
 % --------------------------------------------------------------------------
 %		Sections
 % --------------------------------------------------------------------------
 
-\crefformat{chap}{Chapter~#2#1#3}
-\crefformat{sec}{Section~#2#1#3}
-\crefformat{subsec}{Subsection#2#1#3}
+\zcRefTypeSetup{section}{Name-sg=Section, name-sg=section, Name-pl=Sections, name-pl=sections}
+\zcRefTypeSetup{subsection}{Name-sg=Subsection, name-sg=subsection, Name-pl=Subsections, name-pl=subsections}
 
 %\cref{item:hogehoge}で参照
-\crefname{enumi}{}{}
-\crefname{enumii}{}{}
-\crefname{enumiii}{}{}
-\crefname{enumiiii}{}{}
+% 参照名は消した
+\zcRefTypeSetup{item}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumi}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumii}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumiii}{Name-sg=,Name-pl=,name-sg=,name-pl=}
+\zcRefTypeSetup{enumiv}{Name-sg=,Name-pl=,name-sg=,name-pl=}
 
 % --------------------------------------------------------------------------
